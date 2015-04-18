@@ -1,0 +1,63 @@
+<layout name='Layout/ace_layout' />
+{:W('PageHeader',array('name'=>'贷中'))}
+
+
+<div class="ul_table">
+	<ul>
+		<li class="thead" style="padding-left:10px">
+			<div class="pull-left">
+				<span class="col-16 ">客户</span>
+				<span class="col-16 ">申请贷款（元）</span>				
+			</div>
+			<div class="pull-right">		
+				<span  class="col-15  "> 受理人 </span>
+				<span  class="col-15  ">已用时</span>		
+				<span class="col-15  ">操作</span>
+			</div>
+			<div class="autocut auto">
+				当前步骤 （负责人）
+			</div>
+		</li>
+	</ul>
+	<empty name="list">
+		<ul>
+			<li class="no-data">
+				没找到数据
+			</li>
+		</ul>
+		<else/>
+		<form method="post" action="" name="form_data" id="form_data">
+			<ul>
+				<foreach name="list" item="vo">
+					<li class="tbody">
+						<div class="pull-left">
+							<span class="col-16 ">{$vo.customer} </span>
+							<span class="col-16  "> {$vo.money} </span>
+						</div>
+						<div class="pull-right">
+							<span class="col-15   ">{$vo.user_name}</span>
+							<span class="col-15   ">{$vo.create_time|get_days}</span>
+							<span class="col-15   ">
+                        <a href="{:U('flow/dai')}&id={$vo.id}" class="btn btn-success btn-xs">查看流程</a>
+						
+						<eq name="vo.user_name" value="$user_name">
+							<!-- <a href="＃" class="btn btn-danger btn-xs">终止</a> -->
+						 <a href="{:U('flow/deldai')}&daiid={$vo.id}" class="btn btn-danger btn-xs">删除</a>
+						</eq>
+						
+							</span>
+						</div>
+						<div class="autocut auto">
+						<!-- {$vo.what_for}  -->
+						{$vo.nowstep|dai_step} （{$vo.stepman}）
+								
+						</div>
+					</li>
+				</foreach>
+			</ul>
+		</form>
+		<div class="pagination">
+			{$page}
+		</div>
+	</empty>
+</div>

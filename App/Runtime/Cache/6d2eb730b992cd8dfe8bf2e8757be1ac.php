@@ -1,0 +1,76 @@
+<?php if (!defined('THINK_PATH')) exit();?><a class="btn btn-primary newadd">新增</a>
+<input class="form-control flow_field_<?php echo ($id); ?>" type="hidden" name="flow_field_<?php echo ($id); ?>" id="flow_field_<?php echo ($id); ?>" value="<?php echo ($val); ?>" <?php if(!empty($validate)): ?>check="<?php echo ($validate); ?>" msg="<?php echo ($msg); ?>"<?php endif; ?>>
+
+<style type="text/css" media="screen">
+div.newview{width:100%;height:100px;overflow:auto;border:1px solid #000;}
+#tb_1{width:auto;min-width:100%;}
+</style>
+<div class="newview">
+<table id="tb_1" class="tabledate" cellspacing="0" cellpadding="2" border="1"> 
+<tr align="center" bgcolor="#dcdcdc"> 
+<td>序号</td> 
+<td>员工编号</td>
+<td>姓名</td>
+<td>部门</td>
+<td>出差类别</td> 
+<td>交通工具</td>
+<td>出发地</td>
+<td>目的地</td> 
+<td>出发时间</td> 
+<td>至</td> 
+<td>外出理由</td> 
+</tr> 
+</table> 
+</div>
+
+    
+    <script type="text/javascript"> 
+    var tTD; //用来存储当前更改宽度的Table Cell,避免快速移动鼠标的问题 
+    var table = document.getElementById("tb_1"); 
+    for (j = 0; j < table.rows[0].cells.length; j++) { 
+    table.rows[0].cells[j].onmousedown = function () { 
+    //记录单元格 
+    tTD = this; 
+    if (event.offsetX > tTD.offsetWidth - 10) { 
+    tTD.mouseDown = true; 
+    tTD.oldX = event.x; 
+    tTD.oldWidth = tTD.offsetWidth; 
+    } 
+    //记录Table宽度 
+    //table = tTD; while (table.tagName != ‘TABLE') table = table.parentElement; 
+    //tTD.tableWidth = table.offsetWidth; 
+    }; 
+    table.rows[0].cells[j].onmouseup = function () { 
+    //结束宽度调整 
+    if (tTD == undefined) tTD = this; 
+    tTD.mouseDown = false; 
+    tTD.style.cursor = 'default'; 
+    }; 
+    table.rows[0].cells[j].onmousemove = function () { 
+    //更改鼠标样式 
+    if (event.offsetX > this.offsetWidth - 10) 
+    this.style.cursor = 'col-resize'; 
+    else 
+    this.style.cursor = 'default'; 
+    //取出暂存的Table Cell 
+    if (tTD == undefined) tTD = this; 
+    //调整宽度 
+    if (tTD.mouseDown != null && tTD.mouseDown == true) { 
+    tTD.style.cursor = 'default'; 
+    if (tTD.oldWidth + (event.x - tTD.oldX)>0) 
+    tTD.width = tTD.oldWidth + (event.x - tTD.oldX); 
+    //调整列宽 
+    tTD.style.width = tTD.width; 
+    tTD.style.cursor = 'col-resize'; 
+    //调整该列中的每个Cell 
+    table = tTD; while (table.tagName != 'TABLE') table = table.parentElement; 
+    for (j = 0; j < table.rows.length; j++) { 
+    table.rows[j].cells[tTD.cellIndex].width = tTD.width; 
+    } 
+    //调整整个表 
+    //table.width = tTD.tableWidth + (tTD.offsetWidth � tTD.oldWidth); 
+    //table.style.width = table.width; 
+    } 
+    }; 
+    } 
+    </script>

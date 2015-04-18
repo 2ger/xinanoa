@@ -1,0 +1,1282 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+	<title>贷款流程审批</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- basic styles -->
+	<link rel="stylesheet" href="/liucheng/Public/css/bootstrap.min.css"  />
+	<link rel="stylesheet" href="/liucheng/Public/css/font-awesome.min.css" />
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="/liucheng/Public/css/font-awesome-ie7.min.css" />
+	<![endif]-->
+
+	<!-- page specific plugin styles -->
+	<link rel="stylesheet" href="/liucheng/Public/css/jquery-ui-1.10.3.full.min.css" />
+	<link rel="stylesheet" href="/liucheng/Public/css/jquery.gritter.css" />
+
+<!--[if !IE]>
+	-->
+	<script type="text/javascript">
+			window.jQuery || document.write("<script src='/liucheng/Public/js/jquery-2.1.0.min.js'>" + "<" + "/script>");</script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+		window.jQuery || document.write("<script src='/liucheng/Public/js/jquery-1.11.0.min.js'>"+"<"+"/script>");</script>
+<![endif]-->
+    
+	<!-- fonts -->
+	<!-- ace styles -->
+
+	<link rel="stylesheet" href="/liucheng/Public/css/uncompressed/ace.css" />
+	<link rel="stylesheet" href="/liucheng/Public/css/uncompressed/ace-rtl.css" />
+	<link rel="stylesheet" href="/liucheng/Public/css/uncompressed/ace-skins.css" />
+
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="/liucheng/Public/css/uncompressed/ace-ie.css" />
+	<![endif]-->
+
+	<!-- inline styles related to this page -->
+	<link rel="stylesheet" href="/liucheng/Public/css/style.css" />
+	<!-- ace settings handler -->
+
+	<script src="/liucheng/Public/js/ace-extra.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+	<!--[if lt IE 9]>
+	<script src="/liucheng/Public/js/html5shiv.js"></script>
+	<script src="/liucheng/Public/js/respond.min.js"></script>
+	<![endif]-->
+	<script type="text/javascript">
+	var upload_url = "/liucheng/index.php?m=flow&a=upload";
+	var del_url = "/liucheng/index.php?m=flow&a=del_file";
+	var _hmt = _hmt || [];
+	var app_path = "/liucheng";
+	(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?2a935166b0c9b73fef3c8bae58b95fe4";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+</head>
+<body>
+	<div class="shade"></div>
+     
+        
+        <nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #222;">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">小额贷款流程审批系统</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">贷款审批</a></li>
+                <li><a href="#">工作流程</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">客户档案 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">贷款审批</a></li>
+                    <li><a href="#">工作流程</a></li>
+                    <li><a href="#">客户档案</a></li>
+                  
+                  </ul>
+                </li>
+              </ul>
+             
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">莫深辰</a></li>
+                <li><a href="/liucheng/index.php?m=login&a=logout" ><i class="fa fa-sign-out bigger-100"></i>退出</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">个人信息</a></li>
+                    <li><a href="#">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">通知</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        
+		
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<ul class="breadcrumb">
+							<li>
+								<i class="fa fa-home home-icon"></i>
+								<a href="/"  >Home</a>
+							</li>
+
+							<li>
+								流程							</li>
+						</ul><!-- .breadcrumb -->
+					</div>
+
+					<div class="page-content  Flow">
+					<div class="operate panel panel-default" style="max-width:1000px;margin:auto;">
+	<div class="panel-body">
+	
+						<div class="row0">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+<style type="text/css" media="screen">
+.btn-app.liu-nav {
+background-color: #b4c2cc ;
+background-image: none ;
+}
+.narror{font-size: 34px;color:#b4c2cc;
+}
+.green{color:green;}
+.right{padding: 0 10px;}
+.down{padding: 0px 40px;}
+</style>						
+
+<div class="page-header">
+  <h1>贷款流程图<small><i class="fa fa-users"></i> 客户：黄元生  /  <i class="fa fa-user"></i> 信贷员：杨枫 /  <i class="fa fa-calendar"></i> 时间：2014-12-25 12:23  ／ <i class="fa fa-calendar-o"></i>历时：5天2小时</small></h1>
+</div>
+<div class="alert alert-danger" role="alert">
+    客户姓名：黄元生  代款金额：100，000
+    <br>
+    (本次贷款基础信息).......
+</div>
+                         
+<div class="col-xs-12">
+    
+    <div class="pull-left text-center green">
+<a class="btn btn-app liu-nav  btn-xs  btn-success">
+    <i class="fa fa-file-o bigger-100"></i>
+    申请															
+</a>
+<br/>
+ 黄元生<br/>
+2014-12-25
+</div> 
+
+</div>     
+<div class="col-xs-12">
+    
+<a class="narror down pull-left ">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+    
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs btn-danger" panel="sl" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    受理																
+</a>
+<br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+
+<div class="pull-left text-center">
+
+<a class="btn btn-app liu-nav btn-xs " panel="mtkh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    面谈																
+</a>
+
+<br/>
+杨枫<br/>
+2014-12-25
+</div> 
+
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs "  panel="Three" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    材料收集																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs "  panel="fx" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    分析																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs "  panel="fksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    风控审批																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+
+</div> 
+
+     
+<div class="col-xs-12">
+    
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center">
+    <a class="btn btn-app liu-nav btn-xs" panel="sdkc" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    实地考察																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdkc" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    双人双岗																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdkc" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    调查提纲																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdkc" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    调查底稿																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+
+
+</div>      
+<div class="col-xs-12">
+    
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="xdjlpg" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    评估																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+
+<div class="well  pull-left" style="max-width: 400px; margin: 0 auto 10px;margin-top: -30px;">
+    <a class="btn btn-app liu-nav btn-block btn-xs"  panel="xdjlpg" data-toggle="modal" data-target="#myModal">
+        信贷经理																
+    </a><br/>
+    <a class="btn btn-app liu-nav btn-block btn-xs" panel="fkjlpg" data-toggle="modal" data-target="#myModal">
+        风控经理																
+    </a>
+    </div>
+    
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="zxdspg" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    执行董事																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="jzlpg" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    总经理																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+</div>   
+
+
+<div class="col-xs-12">
+    
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    审贷会																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    审贷会资料																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    质询															
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    表决															
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="sdh" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    反馈客户																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+
+</div> 
+
+
+
+<div class="col-xs-12">
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="qy" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    签约																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="qy" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    客户签合同																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+</div>  
+
+
+
+
+<div class="col-xs-12">
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="dbsx" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    担保手续																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="dbsx" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    客户办手续																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+</div>  
+
+
+<div class="col-xs-12">
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="xdjlfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    放款																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="xdjlfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    信贷经理																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="fkjlfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    风控经理																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="zxdsfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    执行董事																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="zjlfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    总经理																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="cwfksp" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    财务																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+</div> 
+
+
+<div class="col-xs-12">
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="zlzl" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-file-o bigger-100"></i>
+    归档																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="zlzl" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    整理资料																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs" panel="lrxt" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa-comments bigger-100"></i>
+    录入系统																
+</a><br/>
+杨枫<br/>
+2014-12-25
+</div> 
+</div>   
+             
+                           
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+						</div>
+						</div>
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+				</div><!-- /#ace-settings-container -->
+			</div><!-- /.main-container-inner -->
+
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse hidden-print">
+				<i class="fa fa-double-angle-up fa-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+	<div id="push_msg"></div>
+	<iframe src="/liucheng/index.php?m=push&a=client2" class="push" id="push"></iframe>
+	<!-- basic scripts -->
+
+<!-- Modal -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">客户：黄元生 / 金额：100000</h4>
+      </div>
+      <div class="modal-body">
+       
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#sl" aria-expanded="true" aria-controls="collapseOne">
+             2-1 受理：客户基本信息录入
+            </a>
+          </h4>
+        </div>
+        <div id="sl" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-3 control-label">客户姓名：</label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="inputPassword3" placeholder="">
+            </div>
+          </div>
+          （...其它信息。。。）
+          <a class="btn btn-primary btn-sm">保存</a>
+          <a class="btn btn-success btn-sm step-done" step="sl">完成</a>
+          
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#mtkh" aria-expanded="false" aria-controls="collapseTwo">
+             2-1  面谈客户
+            </a>
+          </h4>
+        </div>
+        <div id="mtkh" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+      
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="presentation active"><a href="#home" role="tab" data-toggle="tab">线上</a></li>
+            <li role="presentation " class="presentation profile"><a href="#profile" role="tab" data-toggle="tab">线下</a></li>
+          </ul> 
+           <!-- Tab panes -->
+           <div class="tab-content">
+             <div role="tabpanel" class="tab-pane active" id="home">
+  
+           <form class="form-horizontal" role="form">
+             <div class="form-group">
+               <label for="inputEmail3" class="col-sm-2 control-label">问题一：</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="inputEmail3" placeholder="">
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-2 control-label">问题二：</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-2 control-label">问题三：</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-2 control-label">问题四：</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-2 control-label">问题五：</label>
+               <div class="col-sm-10">
+                 <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+             </div>
+               <div class="form-group">
+                 <label for="inputPassword3" class="col-sm-2 control-label">写简评：</label>
+                 <div class="col-sm-10">
+                  <textarea class="form-control " id="" name="" rows="3"></textarea>
+                 </div>
+               </div>
+           </form>
+  
+  
+             </div>
+             <div role="tabpanel" class="tab-pane" id="profile">
+ 
+             <form class="form-horizontal" role="form">
+               <div class="form-group">
+                 <label for="inputEmail3" class="col-sm-2 control-label"> 第一步:</label>
+                 <div class="col-sm-10">
+                  <p class="form-control-static"> <a class="btn btn-primary btn-sm">点击此打印面谈表格</a></p>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <label for="inputPassword3" class="col-sm-2 control-label"> 第二步:</label>
+                 <div class="col-sm-10">
+                 <input type="file" id="exampleInputFile">
+                    <p class="help-block">请在此上传面谈记录表格</p>
+                 </div>
+               </div>
+               <div class="form-group">
+                 <label for="inputPassword3" class="col-sm-2 control-label"> 第三步:</label>
+                 <div class="col-sm-10">
+                  <textarea class="form-control " id="" name="" rows="3">填写简评</textarea>
+                 </div>
+               </div>
+ 
+             </form>
+  
+             </div>
+           </div>
+       
+
+       <a class="btn btn-primary btn-sm">保存</a>
+       <a class="btn btn-success btn-sm step-done" step="mtkh">完成</a>
+       
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#Three" aria-expanded="false" aria-controls="collapseThree">
+             2-2 客户资料信息收集
+            </a>
+          </h4>
+        </div>
+        <div id="Three" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+       
+            <div class="form-group">
+                <label for="inputPassword3" class="col-sm-5 control-label"> ＃1 借款人身份证扫描件:</label>
+                <div class="col-sm-7">
+                <input type="file" id="exampleInputFile">
+                   <p class="help-block"></p>
+                </div>
+              </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃2  借款人配偶身份证扫描件:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block"></p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃3  户口本:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block"></p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃4  结婚证:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block"></p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃5  学历证明:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block"></p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃6  收入证明:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block">连续6个月以上的银行流水单或存折复印件</p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃7  公司营业执照副本复印件:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block"></p>
+               </div>
+             </div>
+             <div class="form-group">
+               <label for="inputPassword3" class="col-sm-5 control-label">＃8  验资报告:</label>
+               <div class="col-sm-7">
+               <input type="file" id="exampleInputFile">
+                  <p class="help-block">连续6个月以上的公司银行流水，近2年的审计报表</p>
+               </div>
+             </div>
+ 
+     <table class="table tablefksp table-striped" >
+         <tr><th>序号</th><th>步骤</th><th>不通过原因</th><th>审批时间</th><th>审批人</th></tr>
+     </table>
+                  
+
+   <a class="btn btn-primary btn-sm">保存</a>
+   <a class="btn btn-success btn-sm step-done" step="Three">完成</a>
+       
+          </div>
+        </div>
+      </div>
+  
+   <div class="panel panel-default">
+     <div class="panel-heading" role="tab" id="headingThree">
+       <h4 class="panel-title">
+         <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#Three" aria-expanded="false" aria-controls="collapseThree">
+          2-3 分析
+         </a>
+       </h4>
+     </div>
+     <div id="fx" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+       <div class="panel-body">
+      
+
+                  <a class="btn btn-primary btn-sm">保存</a>
+                  <a class="btn btn-success btn-sm step-done" step="fx">完成</a>
+       
+       </div>
+     </div>
+   </div>
+   
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingfksp">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#fksp" aria-expanded="true" aria-controls="collapseOne">
+              2-4 风控审批
+            </a>
+          </h4>
+        </div>
+        <div id="fksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+            <div class="well spfksp" >
+                <button type="button" class="btn btn-danger btn-lg btn-block notdone">不通过</button>
+                <button type="button" class="btn btn-success btn-lg btn-block step-done" step="fksp">通过</button>
+              </div>
+    
+              <div class="cozfksp hidden" >
+              
+                  <form role="form">
+                      <input type="hidden" name="time" value="2014-12-25 12:35" id="time">
+                      <input type="hidden" name="username" value="马建国" id="username">
+                    <fieldset >
+                      <div class="form-group">
+                        <label for="disabledTextInput">请选择步骤</label>
+                       <select class="form-control bzfksp">
+                         <option vaule="用户基本信息">1 用户基本信息</option>
+                         <option vaule="面淡信息">2 面淡信息</option>
+                         <option vaule="材料收集">3 材料收集</option>
+                         <option vaule="分析">4 分析</option>
+                       </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="disabledSelect">不通过原因</label>
+                        <textarea class="form-control cozinfofksp" id="" name="" rows="3"></textarea>
+                      </div>
+                      <a class="btn btn-primary addfksp">添加</a>
+                  
+                      <table class="table tablefksp table-striped" >
+                          <tr><th>序号</th><th>步骤</th><th>不通过原因</th><th>审批时间</th><th>审批人</th></tr>
+                      </table>
+                  
+                    </fieldset>
+                  </form>
+              
+                           
+              </div>
+
+              <script type="text/javascript">
+                  $(".notdone").click(function(){
+                 
+                      $(".cozfksp").removeClass("hidden");
+                      $(".spfksp").addClass("hidden");
+                  });
+                  var id =1;
+                  $(".addfksp").click(function(){
+                      $(".tablefksp").append("<tr class=warning><td>"+id+"</td><td>"+$(".bzfksp").val()+"</td><td>"+$(".cozinfofksp").val()+"</td><td>"+$("#time").val()+"</td><td>"+$("#username").val()+"</td></tr>");
+                      id++;
+                      $(".zlsj").addClass("btn-danger").removeClass("btn-success");
+                  })
+              </script>
+                
+          </div>
+        </div>
+      </div><!-- panel -->
+ 
+      <div class="panel  panel-danger">
+        <div class="panel-heading" role="tab" id="headingsdkc"><!-- id="headingfksp" -->
+          <h4 class="panel-title"><!-- href="#fksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#sdkc" aria-expanded="true" aria-controls="collapseOne">
+            3  实地考察
+            </a>
+          </h4>
+        </div>
+        <!-- id="fksp" -->
+        <div id="sdkc" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          <a class="btn btn-success btn-sm btn-block step-done" step="sdkc"><i class="fa fa-check"></i> 完成</a>
+
+                  <a class="btn btn-primary btn-sm">保存</a>
+                  <a class="btn btn-success btn-sm step-done" step="sdkc">完成</a>
+                  
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingxdjlpg"><!-- id="xdjlpg" -->
+          <h4 class="panel-title"><!-- href="#xdjlpg" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#xdjlpg" aria-expanded="true" aria-controls="collapseOne">
+            4-1-1信贷经理评估
+            </a>
+          </h4>
+        </div>
+        <!-- id="xdjlpg" -->
+        <div id="xdjlpg" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <div class="well spxdjlpg" >
+            <button type="button" class="btn btn-danger btn-lg btn-block notdone">不通过</button>
+            <button type="button" class="btn btn-success btn-lg btn-block step-done" step="xdjlpg">通过</button>
+          </div>
+
+          <div class="cozxdjlpg hidden" >
+          
+              <form role="form">
+                  <input type="hidden" name="time" value="2014-12-25 12:35" id="time">
+                  <input type="hidden" name="username" value="马建国" id="username">
+                <fieldset >
+                  <div class="form-group">
+                    <label for="disabledTextInput">请选择步骤</label>
+                   <select class="form-control bzfksp">
+                     <option vaule="用户基本信息">1 用户基本信息</option>
+                     <option vaule="面淡信息">2 面淡信息</option>
+                     <option vaule="材料收集">3 材料收集</option>
+                     <option vaule="分析">4 分析</option>
+                   </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="disabledSelect">不通过原因</label>
+                    <textarea class="form-control cozinfofksp" id="" name="" rows="3"></textarea>
+                  </div>
+                  <a class="btn btn-primary addfksp">添加</a>
+              
+                  <table class="table tablefksp table-striped" >
+                      <tr><th>序号</th><th>步骤</th><th>不通过原因</th><th>审批时间</th><th>审批人</th></tr>
+                  </table>
+              
+                </fieldset>
+              </form>
+          
+                       
+          </div>
+
+          <script type="text/javascript">
+              $(".notdone").click(function(){
+             
+                  $(".cozxdjlpg").removeClass("hidden");
+                  $(".spxdjlpg").addClass("hidden");
+              });
+              var id =1;
+              $(".addfksp").click(function(){
+                  $(".tablefksp").append("<tr class=warning><td>"+id+"</td><td>"+$(".bzfksp").val()+"</td><td>"+$(".cozinfofksp").val()+"</td><td>"+$("#time").val()+"</td><td>"+$("#username").val()+"</td></tr>");
+                  id++;
+                  $(".zlsj").addClass("btn-danger").removeClass("btn-success");
+              })
+          </script>
+              
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingfkjlpg"><!-- id="fkjlpg" -->
+          <h4 class="panel-title"><!-- href="#fkjlpg" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#fkjlpg" aria-expanded="true" aria-controls="collapseOne">
+            4-1-2 风控经理评估
+            </a>
+          </h4>
+        </div>
+        <!-- id="fkjlpg" -->
+        <div id="fkjlpg" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingzxdspg"><!-- id="zxdspg" -->
+          <h4 class="panel-title"><!-- href="#zxdspg" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#zxdspg" aria-expanded="true" aria-controls="collapseOne">
+            4-2 执行董事评估
+            </a>
+          </h4>
+        </div>
+        <!-- id="zxdspg" -->
+        <div id="zxdspg" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingjzlpg"><!-- id="jzlpg" -->
+          <h4 class="panel-title"><!-- href="#jzlpg" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#jzlpg" aria-expanded="true" aria-controls="collapseOne">
+            4-2 总经理评估
+            </a>
+          </h4>
+        </div>
+        <!-- id="jzlpg" -->
+        <div id="jzlpg" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingsdh"><!-- id="sdh" -->
+          <h4 class="panel-title"><!-- href="#sdh" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#sdh" aria-expanded="true" aria-controls="collapseOne">
+            5 审贷会
+            </a>
+          </h4>
+        </div>
+        <!-- id="sdh" -->
+        <div id="sdh" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+
+          <a class="btn btn-primary btn-sm">保存</a>
+          <a class="btn btn-success btn-sm step-done" step="sdh">完成</a>
+          
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingqy"><!-- id="qy" -->
+          <h4 class="panel-title"><!-- href="#qy" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#qy" aria-expanded="true" aria-controls="collapseOne">
+            6 签约
+            </a>
+          </h4>
+        </div>
+        <!-- id="qy" -->
+        <div id="qy" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+
+       <a class="btn btn-primary btn-sm">保存</a>
+       <a class="btn btn-success btn-sm step-done" step="qy">完成</a>
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingdbsx"><!-- id="dbsx" -->
+          <h4 class="panel-title"><!-- href="#dbsx" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#dbsx" aria-expanded="true" aria-controls="collapseOne">
+            7 办理担保手续
+            </a>
+          </h4>
+        </div>
+        <!-- id="dbsx" -->
+        <div id="dbsx" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+
+          <a class="btn btn-primary btn-sm">保存</a>
+          <a class="btn btn-success btn-sm step-done" step="dbsx">完成</a>
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingxdjlfksp"><!-- id="xdjlfksp" -->
+          <h4 class="panel-title"><!-- href="#xdjlfksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#xdjlfksp" aria-expanded="true" aria-controls="collapseOne">
+            8-1 信贷经理放款审批
+            </a>
+          </h4>
+        </div>
+        <!-- id="xdjlfksp" -->
+        <div id="xdjlfksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingfkjlfksp"><!-- id="fkjlfksp" -->
+          <h4 class="panel-title"><!-- href="#fkjlfksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#fkjlfksp" aria-expanded="true" aria-controls="collapseOne">
+            8-2 风控经理放款审批
+            </a>
+          </h4>
+        </div>
+        <!-- id="fkjlfksp" -->
+        <div id="fkjlfksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingzxdsfksp"><!-- id="zxdsfksp" -->
+          <h4 class="panel-title"><!-- href="#zxdsfksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#zxdsfksp" aria-expanded="true" aria-controls="collapseOne">
+            8-3 执行董事放款审批
+            </a>
+          </h4>
+        </div>
+        <!-- id="zxdsfksp" -->
+        <div id="zxdsfksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingzjlfksp"><!-- id="zjlfksp" -->
+          <h4 class="panel-title"><!-- href="#zjlfksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#zjlfksp" aria-expanded="true" aria-controls="collapseOne">
+            8-4 总经理放款审批
+            </a>
+          </h4>
+        </div>
+        <!-- id="zjlfksp" -->
+        <div id="zjlfksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingcwfksp"><!-- id="cwfksp" -->
+          <h4 class="panel-title"><!-- href="#cwfksp" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#cwfksp" aria-expanded="true" aria-controls="collapseOne">
+            8-5 财务放款
+            </a>
+          </h4>
+        </div>
+        <!-- id="cwfksp" -->
+        <div id="cwfksp" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headingzlzl"><!-- id="zlzl" -->
+          <h4 class="panel-title"><!-- href="#zlzl" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#zlzl" aria-expanded="true" aria-controls="collapseOne">
+           9-1 整理资料
+            </a>
+          </h4>
+        </div>
+        <!-- id="zlzl" -->
+        <div id="zlzl" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+
+          <a class="btn btn-primary btn-sm">保存</a>
+          <a class="btn btn-success btn-sm step-done" step="zlzl">完成</a>
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+      <div class="panel  panel-default">
+        <div class="panel-heading" role="tab" id="headinglrxt"><!-- id="lrxt" -->
+          <h4 class="panel-title"><!-- href="#lrxt" -->
+            <a data-toggle="collapse" data-parent="#accordion" href="#lrxt" aria-expanded="true" aria-controls="collapseOne">
+            9-2 录入系统
+            </a>
+          </h4>
+        </div>
+        <!-- id="lrxt" -->
+        <div id="lrxt" class="panel-collapse collapse " role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+    
+        <label for="forms">FORMS</label><input type="text" name="forms" value="" id="forms">
+
+          <a class="btn btn-primary btn-sm">保存</a>
+          <a class="btn btn-success btn-sm step-done" step="lrxt">完成</a>
+          
+          </div> <!-- panel-body -->
+        </div>
+      </div><!-- panel -->
+  
+
+  
+  
+</div> <!-- panel group -->
+
+ 
+                
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary openall" >展开所有</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal">完成</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script type="text/javascript">
+			if ("ontouchend" in document)
+				document.write("<script src='/liucheng/Public/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="/liucheng/Public/js/bootstrap.min.js"></script>
+<script src="/liucheng/Public/js/typeahead-bs2.min.js"></script>
+<script src="/liucheng/Public/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="/liucheng/Public/js/jquery.ui.touch-punch.min.js"></script>
+<script src="/liucheng/Public/js/jquery.slimscroll.min.js"></script>
+
+
+<script type="text/javascript">
+     // 打开  －－－   显示本部份内容，隐藏其它部份内容
+    $(".liu-nav").click(function(){
+      //  alert(""+$(this).attr("panel")+"");
+         $(".panel-collapse").removeClass("in").css("height","0");
+        
+        $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+    })
+    
+    $(".openall").click(function(){     //打开所有 panel
+        $(".panel-collapse").removeClass("in").css("height","0");
+        $(".panel-collapse").addClass("in").css("height","auto");;
+    })
+    
+    // 点 完成 变绿，下一个变红
+    var steps =new Array("sl","mtkh","Three","fx","fksp","sdkc","xdjlpg","fkjlpg","zxdspg","jzlpg","sdh","qy","dbsx","xdjlfksp","fkjlfksp","zxdsfksp","zjlfksp","cwfksp","zlzl","lrxt");
+    // alert(steps[steps.indexOf(aa)+1]); //取得下一个数组
+    
+    $('.step-done').click(function() {
+        // alert($(this).attr("step")); // 取得当前步
+        var nowstep = $(this).attr("step");
+        var neststep = steps[steps.indexOf(nowstep)+1];
+        $("[panel='"+nowstep+"']").removeClass("btn-danger").addClass("btn-success");//当前步变绿
+        $("[panel='"+neststep+"']").addClass("btn-danger");//下一步变红
+        //打开下一步
+        // $(".panel-collapse").removeClass("in").css("height","0");
+ //        $("#"+neststep).addClass("in").css("height","auto");
+         // 关闭弹窗
+         $('#myModal').modal('hide');
+    });
+    
+</script>
+
+
+
+</body>
+</html>

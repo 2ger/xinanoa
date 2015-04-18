@@ -1,0 +1,77 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+        // 选择两个元素之间的同胞元素
+        // $(".flow_field_143").nextUntil(".flow_field_149").css({"display":"none","border":"2px solid red"});
+	}); 
+
+	function save(step){
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+
+		$("#confirm_name").val($("#confirm_wrap").html());
+
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		if (check_form("form_data")) {
+			sendForm("form_data", "{:U('save')}");
+		}
+	}
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+</script>
+	<script language="javascript">
+
+	var nowstep = "{$step}";
+	var neststep = "{$nextstep}";               
+	var isnextdone ="{$nextis}";
+	$('.tijiao').click(function(event) {
+	    $("body",parent.document).find('.close').click(); // ok  关闭弹窗
+ 
+	    $("body",parent.document).find("[panel='"+nowstep+"']").removeClass("btn-danger").addClass("btn-success");//当前步变绿
+    
+		// 如果下一步为0，变红/2
+		if (isnextdone == "0") {
+			  $("body",parent.document).find("[panel='"+neststep+"']").addClass("btn-danger");
+		}
+  
+
+	    //IFRAME 自动高度  1》取得body 高度  2》设置父层高度
+	    // var height = $("#{$step}iframe").css("height");
+	    // //var height = $("#step21iframe").css("height");
+	    // //alert(height)
+	    // $("body",parent.document).find("#{$step}iframe").css("height",height);
+   
+	});
+
+	//权限操作  表单不可填，提交不可见
+	// $('input,select,button,textarea').attr("disabled","disabled").addClass('disabled');
+
+	</script>

@@ -1,0 +1,1209 @@
+<layout name='Layout/ace_layout' />
+<style type="text/css" media="screen">
+.sidebar{display:none;}
+</style>
+
+<div class="col-sm-12  hidden-print">
+    <h1 style="color:green"><i class="fa fa-group"></i> {:get_system_config("SYSTEM_NAME")}</h1>
+  
+</div>
+<div class="page-header">
+  <h1> {$CompanyName['name']} 
+      <div class="text-center">
+            <b> 贷后流程  </b>
+      </div></h1>
+</div>
+
+<div class="alert alert-danger" role="alert">
+ 	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-users"></i> 申请人</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+	   <span id="username"> {$DaiInfo['customer']}  </span>	</p>
+					</div>
+	</div>
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-user"></i> 受理人</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+             	<span  id="username"> {$DaiInfo['user_name']} 		</p>
+					</div>
+	</div>
+    
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-money"></i>  贷款金额</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				{$DaiInfo['money']} 元	</p>
+					</div>
+	</div>
+	
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-calendar"></i> 申请时间</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				 {$DaiInfo['aply_time']|date="Y-m-d H:i:s",###} 		</p>
+					</div>
+	</div>
+    
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-automobile"></i> 资金用途</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				   	 {$DaiInfo['what_for']} 	</p>
+					</div>
+	</div>
+	
+	
+	<div class="form-group col-sm-6">
+		<label class="col-sm-4 control-label" for=""><i class="fa fa-calendar-o"></i> 放款时间</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				 {$DaiInfo['create_time']|date="Y-m-d H:i:s",###}   		</p>
+					</div>
+	</div>
+	
+
+	 
+    <br style="clear:both;">
+</div>
+              
+<div class="col-xs-12">
+    
+    <div class="pull-left text-center green">
+ <a class="btn btn-app liu-nav btn-xs btn-success" panel="step11" data-toggle="modal" data-target="#myModal">
+    <i class="fa fa fa-check-circle bigger-100 bigger-100"></i>
+贷款成功															
+</a>
+<br/>
+1
+ <!-- {$DaiInfo['customer']}    <br/>
+{$DaiInfo['aply_time']|date="Y-m-d H:i:s",###}   -->
+</div> 
+
+</div>     
+<div class="col-xs-12">
+    
+<a class="narror down pull-left ">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+    
+<div class="pull-left text-center">
+ <a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1021)}" panel="step1021" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1021)} bigger-100"></i>
+ 付息	 															
+</a>
+<br/>
+2
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+
+<div class="pull-left text-center">
+
+<a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1021)}" panel="step1021" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1021)} bigger-100"></i>
+    打印通知单															
+</a>
+
+<br/>
+{:get_step_done_man($id,'step1021','合同组')}<br/>
+{:get_step_done_time($id,'step1021')}  
+
+</div> 
+
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1022)}"  panel="step1022" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1022)} bigger-100"></i>
+    提前7天通知客户																
+</a><br/>
+{:get_step_done_man($id,'step1022','行政部')}<br/>
+{:get_step_done_time($id,'step1022')}  
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1023)}"  panel="step1023" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1023)} bigger-100"></i>
+    提前3天通知客户															
+</a><br/>
+{$DaiInfo['user_name']}<br/>
+{:get_step_done_time($id,'step1023')}  
+</div> 
+<a class="narror right pull-left ">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+<a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1024)}"  panel="step1024" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1024)} bigger-100"></i>
+   客户打息															
+</a><br/>
+{$DaiInfo['user_name']}<br/>
+{:get_step_done_time($id,'step1024')}  
+</div> 
+
+</div> 
+
+<div class="col-xs-12">
+    
+<a class="narror down pull-left" style="height:34px">
+    <!-- <i class="fa fa-arrow-down  "></i>		 -->													
+</a>
+
+</div>  
+<div class="col-xs-12">
+	<div class="pull-left text-center" style="width:108px;height:90px">
+	  
+	</div> 
+	<a class="narror right pull-left">
+	    <i class="fa   fa-arrow-right"></i>															
+	</a>
+	
+<div class="pull-left text-center">
+    <a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1025)}" panel="step1025" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1025)} bigger-100"></i>
+  财务确认																
+</a><br/>
+{:get_step_done_man($id,'step1025','财务部')}<br/>
+{:get_step_done_time($id,'step1025')}  
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+    <a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1026)}" panel="step1026" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1026)} bigger-100"></i>
+  信贷员录入																
+</a><br/>
+{$DaiInfo['user_name']}<br/>
+{:get_step_done_time($id,'step1026')}  
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center">
+    <a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1027)}" panel="step1027" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1027)} bigger-100"></i>
+  办公室录入																
+</a><br/>
+{:get_step_done_man($id,'step1027','行政部')}<br/>
+{:get_step_done_time($id,'step1027')}  
+</div> 
+<!-- <a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>
+</a>
+
+<div class="well text-center pull-left" style="max-width: 400px; margin: -30px auto 10px;">
+
+	<a class="btn btn-app liu-nav btn-block btn-xs {:get_dai_step(step411)}"  panel="step411" data-toggle="modal" data-target="#myModal">
+        信贷员录入 {:get_step_done_man($id,'step411','')}
+    </a>
+<br />  {:get_step_done_time($id,'step3')}  <br />
+    <a class="btn btn-app liu-nav btn-block btn-xs {:get_dai_step(step412)}" panel="step412" data-toggle="modal" data-target="#myModal">
+        办公室录入	 {:get_step_done_man($id,'step412','')}
+    </a><br />
+	{:get_step_done_time($id,'step3')}
+    </div> -->
+
+</div>      
+<div class="col-xs-12">
+    
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1031)}" panel="step1031" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1031)} bigger-100"></i>
+  还本																
+</a><br/>
+3
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs  {:get_dai_step(step1031)}" panel="step1031" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1031)} bigger-100"></i>
+  	 打印还本合同																
+</a><br/>
+ {:get_step_done_man($id,'step1031','合同组')}<br/>
+{:get_step_done_time($id,'step1031')}  
+</div> 
+
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs  {:get_dai_step(step1032)}" panel="step1032" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1032)} bigger-100"></i>
+  	 提前1个月通知																
+</a><br/>
+ {:get_step_done_man($id,'step1032','行政部')}<br/>
+{:get_step_done_time($id,'step1032')}  
+</div> 
+
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs  {:get_dai_step(step1033)}" panel="step1033" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1033)} bigger-100"></i>
+  	 提前15天通知																	
+</a><br/>
+{$DaiInfo['user_name']}<br/>
+{:get_step_done_time($id,'step1033')}  
+</div> 
+
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs  {:get_dai_step(step1034)}" panel="step1034" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1034)} bigger-100"></i>
+  	确认还款情况																	
+</a><br/>
+ {:get_step_done_man($id,'step1034','财务部')}<br/>
+{:get_step_done_time($id,'step1034')}  
+</div> 
+
+<!--
+<div class="well text-center pull-left" style="max-width: 400px; margin: 0 auto 10px;margin-top: -30px;">
+    <a class="btn btn-app liu-nav btn-block btn-xs {:get_dai_step(step411)}"  panel="step411" data-toggle="modal" data-target="#myModal">
+
+    </a><br/>
+{:get_step_done_man($id,'step411','行政部')}	 {:get_step_done_time($id,'step411')}
+<br/>
+    <a class="btn btn-app liu-nav btn-block btn-xs {:get_dai_step(step412)}" panel="step412" data-toggle="modal" data-target="#myModal">
+
+    </a><br/>
+{:get_step_done_man($id,'step411','信贷员')} {:get_step_done_time($id,'step412')}
+
+    </div> -->
+    
+</div>   
+
+
+<div class="col-xs-12">
+    
+<a class="narror down pull-left" style="height:34px">
+    <!-- <i class="fa fa-arrow-down  "></i>		 -->													
+</a>
+
+</div>  
+<div class="col-xs-12">
+	<div class="pull-left text-center" style="width:108px;height:90px">
+	  
+	</div> 	
+<a class="narror right pull-left" style="margin-top:30px">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="well text-center pull-left" style="min-width: 400px; margin: 0 auto 10px;margin-top: -30px;">
+	<div class="huanben">
+		<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1035)}" panel="step1035" data-toggle="modal" data-target="#myModal">
+		    <i class="fa {:get_dai_step_icon(step1035)} bigger-100"></i>
+		      客户还本 															
+		</a>
+		</div>
+	
+		<a class="narror right pull-left">
+		    <i class="fa   fa-arrow-right"></i>															
+		</a>
+		<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1036)}" panel="step1036" data-toggle="modal" data-target="#myModal">
+		    <i class="fa {:get_dai_step_icon(step1036)} bigger-100"></i>
+		      信贷员录入 															
+		</a>
+		</div>
+		
+		<a class="narror right pull-left">
+		    <i class="fa   fa-arrow-right"></i>															
+		</a>
+		<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1037)}" panel="step1037" data-toggle="modal" data-target="#myModal">
+		    <i class="fa {:get_dai_step_icon(step1037)} bigger-100"></i>
+		      办公室录入 															
+		</a>
+		</div>
+		
+		
+	</div><!-- .huanben -->
+  
+<div class="yuqi clearfix clear" >
+	  
+	<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1038)}" panel="step1038" data-toggle="modal" data-target="#myModal">
+	    <i class="fa {:get_dai_step_icon(step1038)} bigger-100"></i>
+	      客户逾期 															
+	</a>
+	</div>
+	
+	<a class="narror right pull-left">
+	    <i class="fa   fa-arrow-right"></i>															
+	</a>
+	  
+	<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1039)}" panel="step1039" data-toggle="modal" data-target="#myModal">
+	    <i class="fa {:get_dai_step_icon(step1039)} bigger-100"></i>
+	      信贷员催															
+	</a>
+	</div>
+	
+	<a class="narror right pull-left">
+	    <i class="fa   fa-arrow-right"></i>															
+	</a>
+	  
+	<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step10310)}" panel="step10310" data-toggle="modal" data-target="#myModal">
+	    <i class="fa {:get_dai_step_icon(step10310)} bigger-100"></i>
+	      信贷经理															
+	</a>
+	</div>
+	<a class="narror right pull-left">
+	    <i class="fa   fa-arrow-right"></i>															
+	</a>
+	<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step10311)}" panel="step10311" data-toggle="modal" data-target="#myModal">
+	    <i class="fa {:get_dai_step_icon(step10311)} bigger-100"></i>
+	      风控部															
+	</a>
+	</div>
+	
+	  
+	
+</div><!-- .yuqi -->
+  
+
+    </div>
+
+
+
+</div> 
+
+
+<div class="col-xs-12">
+<a class="narror down pull-left">
+    <i class="fa fa-arrow-down  "></i>															
+</a>
+
+</div>  
+<div class="col-xs-12">
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1041)}" panel="step1041" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1041)} bigger-100"></i>
+  归档分类														
+</a><br/>
+4
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1041)}" panel="step1041" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1041)} bigger-100"></i>
+    归档																
+</a><br/>
+ {:get_step_done_man($id,'step1041','合同组')}<br/>
+{:get_step_done_time($id,'step1041')} 
+</div> 
+<a class="narror right pull-left">
+    <i class="fa   fa-arrow-right"></i>															
+</a>
+<div class="pull-left text-center"><a class="btn btn-app liu-nav btn-xs {:get_dai_step(step1041)}" panel="step1041" data-toggle="modal" data-target="#myModal">
+    <i class="fa {:get_dai_step_icon(step1041)} bigger-100"></i>
+    形成档案库															
+</a>
+</div> 
+</div>      
+				<!-- PAGE CONTENT ENDS -->
+				
+		<div class="pull-right text-right " style="
+	    position: absolute;
+    top: 0px;
+    right: 20px;">
+	<!--	<a onclick="go_return_url();" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-list"></span>返回</a> -->
+    <div style="margin-right:10px;margin-top:5px" >
+         编号：贷-{$NowTime|date='ymd',###}
+		 <br />
+		 <a href="index.php?m=flow&a=timeline&id={$DaiInfo['id']}" title="时间轴" class="btn btn-primary btn-xs" target="_blank"><i class="fa fa-flag"></i> 查看时间轴</a>
+    </div>
+			<eq name="flow_type.is_lock" value="0">
+				<a onclick="popup_confirm();"  class="btn btn-sm btn-warning hidden-print hidden"><i class="fa fa-cubes"></i> 选择审批流程</a>
+			</eq>
+          
+			<a   onclick="winprint();"  class="btn btn-sm btn-primary hidden-print hidden"><i class="fa fa-print"></i> 打印流程图</a>
+
+    	</div>
+	</div>
+
+
+<!-- 弹窗开始 -->
+<div class="modal fade " id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            
+            <div class="row">
+                <div class="col-xs-6">
+                <h4 class="modal-title" id="myModalLabel" >客户：{$DaiInfo['customer']}	 / 金额：{$DaiInfo['money']}.00 元</h4>
+                </div>
+                <div class="col-xs-4 text-right pull-right">
+                <button type="button" class="btn btn-sm btn-default showself" >当前步骤</button>
+                <button type="button" class="btn btn-sm btn-success showall" >显示所有</button>
+                <button type="button" class="btn btn-sm btn-success openall" >展开所有</button>
+                </div>
+            </div>
+          </div>
+                <div class="modal-body">
+       
+
+         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            
+                <div class="panel steps panel-default step1021">
+                  <div class="panel-heading" role="tab" >
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1021" aria-expanded="false" aria-controls="collapseTwo">
+                    1 -   打印还息通知单
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step1021" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+    
+    <!-- 完成开始 -->
+{:get_dai_log($id,'step1021')} 
+			<eq name="ishe" value="1">
+                <form role="form" method='post' id="form_data_step1021" class=" form-horizontal">
+                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+                    <input type="hidden" name="id" value="{$id}">
+                    <input type="hidden" name="step" id='step' value="step1021">
+                    <input type="hidden" name="dostep" id='dostep' value="step1021">
+                    <input type="hidden" name="done" id="done" value="1">
+                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1021">
+                    <input type="hidden" name="create_time" value="{$now}" id="time">
+                    <input type="hidden" name="comment" value="完成">
+                </form>
+               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1021')" step="step1021">已完成</button>
+               </div>
+     		 	</eq>
+<!-- 完成结果 -->
+
+  
+                    </div>
+                  </div>
+                </div><!-- panel -->
+				
+    <div class="panel steps step1022 panel-default">
+      <div class="panel-heading" role="tab" id="headingThree">
+        <h4 class="panel-title">
+          <a class="block" data-toggle="collapse" data-parent="#step1022" href="#step1022" aria-expanded="false" aria-controls="collapseThree">
+           提前7天通知客户
+          </a>
+        </h4>
+      </div>
+      <div id="step1022" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+        <div class="panel-body">
+		
+ <!-- 审批开始 -->
+		{:get_dai_log($id,'step1022')} 
+		<eq name="iszheng" value="1">
+		            <div class="well " style="margin:auto;width:400px">
+ 		               <form role="form" method='post' id="form_data_step1022" class=" form-horizontal">
+ 		                   <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+ 		                   <input type="hidden" name="id" value="{$id}">
+ 		                   <input type="hidden" name="step" id='step' value="step1022">
+ 		                   <input type="hidden" name="dostep" id='dostep' value="step1023"> <!-- 下一步 -->
+ 		                   <input type="hidden" name="done" id="done" value="1">
+ 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1022">
+ 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+ 		                 <fieldset >
+ 		                   <div class="form-group">
+ 		                     <label for="disabledSelect">备注说明：</label>
+ 		                     <textarea class="form-control" id="coz_step1022" name="comment" rows="3"></textarea>
+ 		                   </div>
+ 		                   <a class="btn btn-default nextstep hidden" step="step1022">提交</a>
+ 		                 </fieldset>
+ 		               </form>
+					   
+		              <!-- <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1022')">不通过 </a> -->
+		              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1022')" step="step1022">完成   </a>
+		            </div>
+		    </eq>
+	<!-- 审批结束 -->
+		
+        </div>
+      </div>
+    </div><!-- panel -->
+	
+       <div class="panel steps step1023 panel-default">
+         <div class="panel-heading" role="tab" id="headingThree">
+           <h4 class="panel-title">
+             <a class="block" data-toggle="collapse" data-parent="#step1023" href="#step1023" aria-expanded="false" aria-controls="collapseThree">
+              提前7天通知客户
+             </a>
+           </h4>
+         </div>
+         <div id="step1023" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+           <div class="panel-body">
+		
+ <!-- 审批开始 -->
+		{:get_dai_log($id,'step1023')} 
+		<eq name="isxin" value="1">
+		            <div class="well " style="margin:auto;width:400px">
+ 		               <form role="form" method='post' id="form_data_step1023" class=" form-horizontal">
+ 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+ 		                   <input type="hidden" name="id" value="{$id}">
+ 		                   <input type="hidden" name="step" id='step' value="step1023">
+ 		                   <input type="hidden" name="dostep" id='dostep' value="step1024"> <!-- 下一步 -->
+ 		                   <input type="hidden" name="done" id="done" value="1">
+ 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1023">
+ 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+ 		                 <fieldset >
+ 		                   <div class="form-group">
+ 		                     <label for="disabledSelect">备注说明：</label>
+ 		                     <textarea class="form-control" id="coz_step1023" name="comment" rows="3"></textarea>
+ 		                   </div>
+ 		                   <a class="btn btn-default nextstep hidden" step="step1023">提交</a>
+ 		                 </fieldset>
+ 		               </form>
+		   
+		              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1023')">（未完成）提交反馈 </a>
+		              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1023')" step="step1023">完成   </a>
+		            </div>
+		    </eq>
+	<!-- 审批结束 -->
+		
+           </div>
+         </div>
+       </div><!-- panel -->
+	   
+                    <div class="panel steps panel-default step1024">
+                      <div class="panel-heading" role="tab" >
+                        <h4 class="panel-title">
+                          <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1024" aria-expanded="false" aria-controls="collapseTwo">
+                           客户打息
+                          </a>
+                        </h4>
+                      </div>
+                      <div id="step1024" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+     
+        <!-- 完成开始 -->
+   	{:get_dai_log($id,'step1024')} 
+   				<eq name="isxin" value="1">
+   	                <form role="form" method='post' id="form_data_step1024" class=" form-horizontal">
+   	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+   	                    <input type="hidden" name="id" value="{$id}">
+   	                    <input type="hidden" name="step" id='step' value="step1024">
+   	                    <input type="hidden" name="dostep" id='dostep' value="step1024">
+   	                    <input type="hidden" name="done" id="done" value="1">
+   	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1024">
+   	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+   	                    <input type="hidden" name="comment" value="完成">
+   	                </form>
+   	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+   	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1024')" step="step1024">已完成</button>
+   	               </div>
+         		 	</eq>
+   	<!-- 完成结果 -->
+	
+	  
+                        </div>
+                      </div>
+                    </div><!-- panel -->
+					
+        
+           <div class="panel steps step1025 panel-default">
+             <div class="panel-heading" role="tab" id="headingThree">
+               <h4 class="panel-title">
+                 <a class="block" data-toggle="collapse" data-parent="#step1025" href="#step1025" aria-expanded="false" aria-controls="collapseThree">
+                  财务确认
+                 </a>
+               </h4>
+             </div>
+             <div id="step1025" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+               <div class="panel-body">
+			
+	 <!-- 审批开始 -->
+			{:get_dai_log($id,'step1025')} 
+			<eq name="iscai" value="1">
+			            <div class="well " style="margin:auto;width:400px">
+	 		               <form role="form" method='post' id="form_data_step1025" class=" form-horizontal">
+	 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	 		                   <input type="hidden" name="id" value="{$id}">
+	 		                   <input type="hidden" name="step" id='step' value="step1025">
+	 		                   <input type="hidden" name="dostep" id='dostep' value="step1025"> <!-- 下一步 -->
+	 		                   <input type="hidden" name="bad_step" id='bad_step' value="step1024"> <!-- 上一步 -->
+	 		                   <input type="hidden" name="done" id="done" value="1">
+	 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1025">
+	 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+	 		                 <fieldset >
+	 		                   <div class="form-group">
+	 		                     <label for="disabledSelect">备注说明：</label>
+	 		                     <textarea class="form-control" id="coz_step1025" name="comment" rows="3"></textarea>
+	 		                   </div>
+	 		                 </fieldset>
+	 		               </form>
+			   
+			              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1025')">（未打息）提交反馈 </a>
+			              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1025')" step="step1025">已打息   </a>
+			            </div>
+			    </eq>
+		<!-- 审批结束 -->
+			
+               </div>
+             </div>
+           </div><!-- panel -->
+		   
+                  <div class="panel steps panel-default step1026">
+                    <div class="panel-heading" role="tab" >
+                      <h4 class="panel-title">
+                        <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1026" aria-expanded="false" aria-controls="collapseTwo">
+                         信贷员录入
+                        </a>
+                      </h4>
+                    </div>
+                    <div id="step1026" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                      <div class="panel-body">
+     
+      <!-- 完成开始 -->
+ 	{:get_dai_log($id,'step1026')} 
+ 				<eq name="isxin" value="1">
+ 	                <form role="form" method='post' id="form_data_step1026" class=" form-horizontal">
+ 	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+ 	                    <input type="hidden" name="id" value="{$id}">
+ 	                    <input type="hidden" name="step" id='step' value="step1026">
+ 	                    <input type="hidden" name="dostep" id='dostep' value="step1026">
+ 	                    <input type="hidden" name="done" id="done" value="1">
+ 	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1026">
+ 	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+ 	                    <input type="hidden" name="comment" value="完成">
+ 	                </form>
+ 	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+ 	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1026')" step="step1026">已完成</button>
+ 	               </div>
+       		 	</eq>
+ 	<!-- 完成结果 -->
+	
+	  
+                      </div>
+                    </div>
+                  </div><!-- panel -->
+				  
+                 <div class="panel steps panel-default step1027">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1027" aria-expanded="false" aria-controls="collapseTwo">
+                        办公室录入
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1027" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1027')} 
+				<eq name="iszheng" value="1">
+	                <form role="form" method='post' id="form_data_step1027" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1027">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1027">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1027">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1027')" step="step1027">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+
+                 <div class="panel steps panel-default step1031">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1031" aria-expanded="false" aria-controls="collapseTwo">
+                     2 -    打印还本合同
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1031" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1031')} 
+				<eq name="ishe" value="1">
+	                <form role="form" method='post' id="form_data_step1031" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1031">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1031">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1031">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1031')" step="step1031">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->       
+  
+     <div class="panel steps step1032 panel-default">
+       <div class="panel-heading" role="tab" id="headingThree">
+         <h4 class="panel-title">
+           <a class="block" data-toggle="collapse" data-parent="#step1032" href="#step1032" aria-expanded="false" aria-controls="collapseThree">
+            提前1个月通知客户
+           </a>
+         </h4>
+       </div>
+       <div id="step1032" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+         <div class="panel-body">
+		
+ <!-- 审批开始 -->
+		{:get_dai_log($id,'step1032')} 
+		<eq name="iszheng" value="1">
+		            <div class="well " style="margin:auto;width:400px">
+ 		               <form role="form" method='post' id="form_data_step1032" class=" form-horizontal">
+ 		                   <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+ 		                   <input type="hidden" name="id" value="{$id}">
+ 		                   <input type="hidden" name="step" id='step' value="step1032">
+ 		                   <input type="hidden" name="dostep" id='dostep' value="step1033"> <!-- 下一步 -->
+ 		                   <input type="hidden" name="done" id="done" value="1">
+ 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1032">
+ 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+ 		                 <fieldset >
+ 		                   <div class="form-group">
+ 		                     <label for="disabledSelect">备注说明：</label>
+ 		                     <textarea class="form-control" id="coz_step1032" name="comment" rows="3"></textarea>
+ 		                   </div>
+ 		                 </fieldset>
+ 		               </form>
+		   
+		              <!-- <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1032')">（未完成）提交反馈 </a> -->
+		              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1032')" step="step1032">完成   </a>
+		            </div>
+		    </eq>
+	<!-- 审批结束 -->
+		
+         </div>
+       </div>
+     </div><!-- panel -->
+	 
+
+                <div class="panel steps step1033 panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#step1033" href="#step1033" aria-expanded="false" aria-controls="collapseThree">
+                       财务确认
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step1033" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+					
+			 <!-- 审批开始 -->
+					{:get_dai_log($id,'step1033')} 
+					<eq name="isxin" value="1">
+					            <div class="well " style="margin:auto;width:400px">
+			 		               <form role="form" method='post' id="form_data_step1033" class=" form-horizontal">
+			 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+			 		                   <input type="hidden" name="id" value="{$id}">
+			 		                   <input type="hidden" name="step" id='step' value="step1033">
+			 		                   <input type="hidden" name="dostep" id='dostep' value="step1034"> <!-- 下一步 -->
+			 		                   <input type="hidden" name="bad_step" id='bad_step' value=""> <!-- 上一步 -->
+			 		                   <input type="hidden" name="done" id="done" value="1">
+			 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1033">
+			 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+			 		                 <fieldset >
+			 		                   <div class="form-group">
+			 		                     <label for="disabledSelect">备注说明：</label>
+			 		                     <textarea class="form-control" id="coz_step1033" name="comment" rows="3"></textarea>
+			 		                   </div>
+			 		                 </fieldset>
+			 		               </form>
+					   
+					              <!-- <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1033')">（未还款）提交反馈 </a> -->
+					              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1033')" step="step1033">完成   </a>
+					            </div>
+					    </eq>
+				<!-- 审批结束 -->
+					
+                    </div>
+                  </div>
+                </div><!-- panel -->
+				
+
+                <div class="panel steps step1034 panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#step1034" href="#step1034" aria-expanded="false" aria-controls="collapseThree">
+                       确认还款情况
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step1034" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+					
+			 <!-- 审批开始 -->
+					{:get_dai_log($id,'step1034')} 
+					<eq name="iscai" value="1">
+					            <div class="well " style="margin:auto;width:400px">
+			 		               <form role="form" method='post' id="form_data_step1034" class=" form-horizontal">
+			 		                   <input type="hidden" name="ajax" id='ajax' value="1">
+			 		                   <input type="hidden" name="id" value="{$id}">
+			 		                   <input type="hidden" name="step" id='step' value="step1034">
+			 		                   <input type="hidden" name="dostep" id='dostep' value="step1034"> <!-- 下一步 -->
+			 		                   <input type="hidden" name="bad_step" id='bad_step' value=""> <!-- 上一步 -->
+			 		                   <input type="hidden" name="setstep" id='setstep' value="">
+			 		                   <input type="hidden" name="done" id="done" value="1">
+			 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1034">
+			 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+			 		                 <fieldset >
+			 		                   <div class="form-group">
+			 		                     <label for="disabledSelect">备注说明：</label>
+			 		                     <textarea class="form-control" id="coz_step1034" name="comment" rows="3"></textarea>
+			 		                   </div>
+			 		                 </fieldset>
+			 		               </form>
+					   
+					              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1034')">（未还款）提交反馈 </a>
+								      <a  class="btn btn-warning btn-lg btn-block notdone" onclick="stepdone('form_data_step1034')">客户已逾期 </a>
+					              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1034')" step="step1034">客户已还款  </a>
+					            </div>
+					    </eq>
+				<!-- 审批结束 -->
+					
+                    </div>
+                  </div>
+                </div><!-- panel -->
+                 <div class="panel steps panel-default step1035">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1035" aria-expanded="false" aria-controls="collapseTwo">
+                        客户还本
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1035" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1035')} 
+				<eq name="iscai" value="1">
+	                <form role="form" method='post' id="form_data_step1035" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1035">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1035">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1035">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1035')" step="step1035">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+				 
+                 <div class="panel steps panel-default step1036">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1036" aria-expanded="false" aria-controls="collapseTwo">
+                        信贷员录入
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1036" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1036')} 
+				<eq name="isxin" value="1">
+	                <form role="form" method='post' id="form_data_step1036" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1036">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1036">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1036">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1036')" step="step1036">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+
+                 <div class="panel steps panel-default step1037">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1037" aria-expanded="false" aria-controls="collapseTwo">
+                        办公室录入
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1037" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1037')} 
+				<eq name="iszheng" value="1">
+	                <form role="form" method='post' id="form_data_step1037" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1037">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1037">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1037">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1037')" step="step1037">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+                 <div class="panel steps panel-default step1038">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1038" aria-expanded="false" aria-controls="collapseTwo">
+                        客户逾期
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1038" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1038')} 
+				<eq name="iscai" value="1">
+	                <form role="form" method='post' id="form_data_step1038" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1038">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1038">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1038">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1038')" step="step1038">客户逾期 已确认</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+				 		 								  
+                <div class="panel steps step1039 panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#step1039" href="#step1039" aria-expanded="false" aria-controls="collapseThree">
+                       信贷员催款
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step1039" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+					
+			 <!-- 审批开始 -->
+					{:get_dai_log($id,'step1039')} 
+					<eq name="isxin" value="1">
+					            <div class="well " style="margin:auto;width:400px">
+			 		               <form role="form" method='post' id="form_data_step1039" class=" form-horizontal">
+			 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+			 		                   <input type="hidden" name="id" value="{$id}">
+			 		                   <input type="hidden" name="step" id='step' value="step1039">
+			 		                   <input type="hidden" name="dostep" id='dostep' value="step10310"> <!-- 下一步 -->
+			 		                   <input type="hidden" name="bad_step" id='bad_step' value=""> <!-- 上一步 -->
+			 		                   <input type="hidden" name="done" id="done" value="1">
+			 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1039">
+			 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+			 		                 <fieldset >
+			 		                   <div class="form-group">
+			 		                     <label for="disabledSelect">备注说明：</label>
+			 		                     <textarea class="form-control" id="coz_step1039" name="comment" rows="3"></textarea>
+			 		                   </div>
+			 		                 </fieldset>
+			 		               </form>
+					   
+					              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step1039')">（未还款）提交反馈 </a>
+					              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step1039')" step="step1039">（已还款） 完成   </a>
+					            </div>
+					    </eq>
+				<!-- 审批结束 -->
+					
+                    </div>
+                  </div>
+                </div><!-- panel -->
+
+                <div class="panel steps step10310 panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#step10310" href="#step10310" aria-expanded="false" aria-controls="collapseThree">
+                       信贷经理催款
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step10310" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+					
+			 <!-- 审批开始 -->
+					{:get_dai_log($id,'step10310')} 
+					<eq name="isxinj" value="1">
+					            <div class="well " style="margin:auto;width:400px">
+			 		               <form role="form" method='post' id="form_data_step10310" class=" form-horizontal">
+			 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+			 		                   <input type="hidden" name="id" value="{$id}">
+			 		                   <input type="hidden" name="step" id='step' value="step10310">
+			 		                   <input type="hidden" name="dostep" id='dostep' value="step10311"> <!-- 下一步 -->
+			 		                   <input type="hidden" name="bad_step" id='bad_step' value=""> <!-- 上一步 -->
+			 		                   <input type="hidden" name="done" id="done" value="1">
+			 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step10310">
+			 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+			 		                 <fieldset >
+			 		                   <div class="form-group">
+			 		                     <label for="disabledSelect">备注说明：</label>
+			 		                     <textarea class="form-control" id="coz_step10310" name="comment" rows="3"></textarea>
+			 		                   </div>
+			 		                 </fieldset>
+			 		               </form>
+					   
+					              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step10310')">（未还款）提交反馈 </a>
+					              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step10310')" step="step10310">（已还款） 完成   </a>
+					            </div>
+					    </eq>
+				<!-- 审批结束 -->
+					
+                    </div>
+                  </div>
+                </div><!-- panel -->
+
+                <div class="panel steps step10311 panel-default">
+                  <div class="panel-heading" role="tab" id="headingThree">
+                    <h4 class="panel-title">
+                      <a class="block" data-toggle="collapse" data-parent="#step10311" href="#step10311" aria-expanded="false" aria-controls="collapseThree">
+                       风控部催款
+                      </a>
+                    </h4>
+                  </div>
+                  <div id="step10311" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+					
+			 <!-- 审批开始 -->
+					{:get_dai_log($id,'step10311')} 
+					<eq name="isfengj" value="1">
+					            <div class="well " style="margin:auto;width:400px">
+			 		               <form role="form" method='post' id="form_data_step10311" class=" form-horizontal">
+			 		                   <!-- <input type="hidden" name="ajax" id='ajax' value="1"> -->
+			 		                   <input type="hidden" name="id" value="{$id}">
+			 		                   <input type="hidden" name="step" id='step' value="step10311">
+			 		                   <input type="hidden" name="dostep" id='dostep' value="step10312"> <!-- 下一步 -->
+			 		                   <input type="hidden" name="bad_step" id='bad_step' value=""> <!-- 上一步 -->
+			 		                   <input type="hidden" name="done" id="done" value="1">
+			 		                   <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step10311">
+			 		                   <input type="hidden" name="create_time" value="{$now}" id="time">
+			 		                 <fieldset >
+			 		                   <div class="form-group">
+			 		                     <label for="disabledSelect">备注说明：</label>
+			 		                     <textarea class="form-control" id="coz_step10311" name="comment" rows="3"></textarea>
+			 		                   </div>
+			 		                 </fieldset>
+			 		               </form>
+					   
+					              <a  class="btn btn-danger btn-lg btn-block notdone" onclick="notdone('form_data_step10311')">（未还款）提交反馈 </a>
+					              <a  class="btn btn-success btn-lg btn-block stepdone " onclick="stepdone2('form_data_step10311')" step="step10311">（已还款） 完成   </a>
+					            </div>
+					    </eq>
+				<!-- 审批结束 -->
+					
+                    </div>
+                  </div>
+                </div><!-- panel -->
+
+                 <div class="panel steps panel-default step1041">
+                   <div class="panel-heading" role="tab" >
+                     <h4 class="panel-title">
+                       <a class="block" data-toggle="collapse" data-parent="#accordion" href="#step1041" aria-expanded="false" aria-controls="collapseTwo">
+                      4 -   客户归档
+                       </a>
+                     </h4>
+                   </div>
+                   <div id="step1041" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                     <div class="panel-body">
+     
+     <!-- 完成开始 -->
+	{:get_dai_log($id,'step1041')} 
+				<eq name="ishe" value="1">
+	                <form role="form" method='post' id="form_data_step1041" class=" form-horizontal">
+	                    <!--  <input type="hidden" name="ajax" id='ajax' value="1"> -->
+	                    <input type="hidden" name="id" value="{$id}">
+	                    <input type="hidden" name="step" id='step' value="step1041">
+	                    <input type="hidden" name="dostep" id='dostep' value="step1041">
+	                    <input type="hidden" name="done" id="done" value="1">
+	                    <input type="hidden" name="user_name" value="{:get_user_name()}" id="username_step1041">
+	                    <input type="hidden" name="create_time" value="{$now}" id="time">
+	                    <input type="hidden" name="comment" value="完成">
+	                </form>
+	               <div class="well spxdjlpg" style="max-width:400px;margin:auto">
+	                 <button type="button" class="btn btn-success btn-lg btn-block nextstep"  onclick="stepdone2('form_data_step1041')" step="step1041">已完成</button>
+	               </div>
+      		 	</eq>
+	<!-- 完成结果 -->
+	
+	  
+                     </div>
+                   </div>
+                 </div><!-- panel -->
+				 
+  
+  
+  
+          </div> <!-- panel group -->
+
+                
+                </div>
+          <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-sm btn-default showself" >当前步骤</button>
+            <button type="button" class="btn btn-sm btn-success showall" >显示所有</button>
+            <button type="button" class="btn btn-sm btn-success openall" >展开所有</button> -->
+           <button type="button" class="btn btn-success" data-dismiss="modal">关闭</button>
+          </div>
+        </div>
+      </div>
+    
+</div>
+
+

@@ -1,0 +1,89 @@
+
+<notempty name="widget.jquery-ui">
+	<script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
+</notempty>
+
+<notempty name="widget.date">
+	<script src="__PUBLIC__/js/WdatePicker/WdatePicker.js"></script>
+	<!-- <script src="__PUBLIC__/js/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+    <script src="__PUBLIC__/js/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link rel="stylesheet" href="__PUBLIC__/js/datetimepicker/css/bootstrap-datetimepicker.min.css" type="text/css" media="screen" title="no title" charset="utf-8"> -->
+</notempty>
+
+<notempty name="widget.uploader">
+	<script type="text/javascript" src="__PUBLIC__/plupload/plupload.full.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/plupload/plupload.setting.js"></script>
+</notempty>
+
+<notempty name="widget.editor">
+	<script type="text/javascript" src="__PUBLIC__/editor/kindeditor.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/editor/kindeditor.setting.js"></script>
+</notempty>
+<script src="__PUBLIC__/js/jquery.gritter.min.js"></script>
+<script src="__PUBLIC__/js/bootbox.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	<notempty name="widget.date">
+	// 			$('.input-date').datetimepicker({
+//       format: "yyyy-m-d hh:ii",
+//       showMeridian: true,
+//       language: 'zh-CN',
+//       weekStart: 1,
+//       pickerPosition:'bottom-right',
+//         autoclose: true,
+//         todayBtn: "linked"
+//     });
+// 	$('.input-datem').datetimepicker({
+//   format: "yyyy-m",
+//   showMeridian: true,
+//   language: 'zh-CN',
+//   weekStart: 1,
+//  startView: 'decade', //初始页面
+// minView: 'year', //精确度
+//   pickerPosition:'bottom-right',
+//     autoclose: true,
+//     todayBtn: "linked"
+// });
+// 	$('.input-dated').datetimepicker({
+//   format: "yyyy-m-d",
+//   showMeridian: true,
+//   language: 'zh-CN',
+//   weekStart: 1,
+// minView: 'month', //精确度
+//   pickerPosition:'bottom-right',
+//     autoclose: true,
+//     todayBtn: "linked"
+// });
+//
+			</notempty>
+
+			<notempty name="widget.editor">
+				editor_init();
+			</notempty>
+	});
+</script>
+<script type="text/javascript">
+    //添加   for  出差
+    var id=1;
+    var text="";
+    var texts="";
+    var lb = "外勒";
+   
+    	$(".newadd").click(function() {
+          // alert("hko b ");
+          var leibie = $("#flow_field_61").val();
+          if(leibie){
+              lb="出差"
+          }
+          
+          text =  "<tr><td>"+id+"</td> <td>"+$("#emp_no").text()+"</td> <td>"+$("#username").text()+"</td> <td>"+$("#get_dept_name").text()+"</td> <td>"+lb+"</td> <td>"+$("#flow_field_56").val()+"</td><td>"+$("#flow_field_48").val()+"</td> <td>"+$("#flow_field_49").val()+"</td> <td>"+$("#flow_field_57").val()+"</td> <td>"+$("#flow_field_58").val()+"</td> <td>"+$("#flow_field_59").val()+"</td> </tr>";
+          texts = texts + text;
+          
+            $(".tabledate").append(text);
+            $("#flow_field_115").val(texts);
+            id= id+1;
+    	})
+    </script>

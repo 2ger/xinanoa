@@ -1,0 +1,8 @@
+	<div class="form-inline flow_field_{$id}">
+	<foreach name="control_data" item="control_vo">
+		<label>
+			<input name="flow_field_{$id}[]" class="ace" type="checkbox" value="{$key}" <in name="key" value="1">checked</in>>
+			<span class="lbl">{$control_vo}</span>
+		</label>
+	</foreach>
+</div>

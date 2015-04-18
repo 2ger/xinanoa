@@ -1,0 +1,347 @@
+<layout name='Layout/ace_layout' />
+
+<style type="text/css" media="screen">
+.sdkc{}
+	.form-group {
+	  margin-bottom: 2px;
+	  min-height: 24px;
+	}
+	.form-horizontal .form-group {
+	  margin-right: -12px;
+	  margin-left: 0;
+	}
+	select{font-size:16px;}
+</style>
+
+
+
+<div class="col-sm-12  hidden-print">
+    <h1 style="color:green"><!-- <i class="fa fa-group"></i> --><img src="/logo.png" style="
+    height: 45px;
+"> {:get_system_config("SYSTEM_NAME")}</h1>
+  
+</div>
+<div class="page-header">
+  <h1> <!-- {$CompanyName['name']}  --> <br /><br />
+      <div class="text-center">
+            {$flow_type['name']}
+      </div></h1>
+</div>
+<div class="col-sm-12 text-center hidden">
+   {:W('PageHeader',array('name'=>array('',$flow_type['name']),'search'=>'N'))}
+</div>
+
+
+		<div class="pull-right text-right" style="
+	    position: absolute;
+    top: 0px;
+    right: 20px;">
+	<!--	<a onclick="go_return_url();" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-list"></span>返回</a> -->
+    <div style="margin-right:10px;margin-top:5px">
+         表单号：HW-{$NowTime|date='ymdHis',###}
+    </div>
+			<eq name="flow_type.is_lock" value="0">
+				<a onclick="popup_confirm();"  class="btn btn-sm btn-warning hidden-print"><i class="fa fa-cubes"></i> 选择审批流程</a>
+			</eq>
+          
+			<a   onclick="winprint();"  class="btn btn-sm btn-primary hidden-print"><i class="fa fa-print"></i> 打印{$flow_type['name']}</a>
+
+     
+    	</div>
+	</div>
+
+<form method='post' id="form_data" name="form_data" enctype="multipart/form-data" class=" form-horizontal" style="clear:both"> 
+	<input type="hidden" id="ajax" name="ajax" value="0">
+	<input type="hidden" id="kh" name="kh" value="2">
+	<input type="hidden" id="add_file" name="add_file" >
+	<input type="hidden" id="type" name="type" value="{$flow_type.id}">
+	<input type="hidden" id="opmode" name="opmode" value="add">
+	<input type="hidden" id="confirm" name="confirm" value="">
+	<input type="hidden" id="confirm_name" name="confirm_name" value="">
+	<input type="hidden" id="consult" name="consult" value="">
+	<input type="hidden" id="consult_name" name="consult_name" value="">
+	<input type="hidden" id="refer" name="refer" value="">
+	<input type="hidden" id="refer_name" name="refer_name" value="">
+	<input type="hidden" id="step" name="step" value="">
+	<input type="hidden" id="from" name="from" value="{$from}">
+
+	<div class="form-group" style="display:none">
+		<label class="col-sm-2 control-label" for="name"><!--标题 -->文件编号</label>
+		<div class="col-sm-10">
+			<input class="form-control" type="text" id="name" name="name" check="require" msg="请输入标题" value=" {$NowTime|date='Y-m-d H:i:s',###}">
+		</div>
+	</div>
+
+
+	<neq name="flow_type.is_edit" value="2">
+	<div class="alert alert-danger alert-dismissable hidden-print" role="alert">
+	    <button type="button" class="close" data-dismiss="alert" 
+	       aria-hidden="true">
+	       &times;
+	    </button>
+				{$flow_type.content}
+				
+			
+	</div>
+	</neq>	
+    
+<div class="alert alert-info alert-dismissable hidden-print">
+	    <button type="button" class="close" data-dismiss="alert" 
+	       aria-hidden="true">
+	       &times;
+	    </button>
+
+		<div class="flowto">
+			<strong> 流程走向图: </strong>
+	<span data="dgp_13_5" id="dgp_13_5"><nobr><b>发起流程</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>
+		{$flow_type.confirm_name}
+		<neq name="flow_type.refer_name" value="">
+		<span data="dgp_13_5" id="dgp_13_5"><b><i class="fa fa-arrow-right"></i></b><nobr><b>抄送</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>
+		{$flow_type.refer_name}
+		</neq>
+		<style type="text/css" media="screen">
+			.flowto span nobr{padding:10px;
+				    border: solid;
+			    border-radius: 10px;}
+				.flowto span nobr:hover{
+				    border: dotted;
+				    background: #fff;
+				    }
+				.flowto .fa-times{display:none;}
+				.flowto .fa-arrow-right{margin: 0 10px;font-size: 24px;}
+		</style>
+		</div><!-- .flowto -->
+		</div>
+    
+<div class="blocktitle title-primary" >
+  <div>个人信息 </div>
+</div>
+<style type="text/css" media="screen">
+.bianma{width:80px;}
+</style>
+
+  <div class="alert alert-success" role="alert">
+ 	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for="">填写</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+	 <span class="bianma" id="emp_no">{$UserInfo['emp_no']}</span>
+			 －  <span  id="username"> {:get_user_name()} </span>	</p>
+					</div>
+	</div>
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for="">职称</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				  {$PositionName['name']} 		</p>
+					</div>
+	</div>
+    
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for="">公司</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				 <span class="bianma">{$CompanyName['rank_no']} </span>－  {$CompanyName['name']}		</p>
+					</div>
+	</div>
+	
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for="">手机</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				  {$UserInfo['mobile_tel']}	</p>
+					</div>
+	</div>
+    
+	<div class="form-group  col-sm-6">
+		<label class="col-sm-4 control-label" for="">部门</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+                <span class="bianma">{$PositionName['position_no']}</span>
+				 － <span id="get_dept_name"> {:get_dept_name()} 	</span>	</p>
+					</div>
+	</div>
+	
+	
+
+    
+	
+	<div class="form-group col-sm-6">
+		<label class="col-sm-4 control-label" for="">日期</label>
+		<div class="col-sm-8">
+			<p id="" class="form-control-static address_list">
+				 {$NowTime|date="Y-m-d H:i:s",###}  		</p>
+					</div>
+	</div>
+    <br style="clear:both;">
+</div>
+
+<!-- <div class="blocktitle title-danger" >
+  <div>项目信息</div>
+</div> -->
+
+<div style="display:none">
+	<div class="form-group">
+		<label class="col-sm-2 control-label" >文件编号：</label>
+		<div class="col-sm-10">
+			<p class="form-control-static">
+				{$flow_type.doc_no_format}
+			</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" >审批：</label>
+		<div class="col-sm-10">
+			<p id="confirm_wrap" class="form-control-static address_list">
+				{$flow_type.confirm_name}
+			</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" >协商：</label>
+		<div class="col-sm-10">
+			<p id="consult_wrap" class=" form-control-static address_list">
+				{$flow_type.consult_name}
+			</p>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<label class="col-sm-2 control-label" >抄送：</label>
+		<div class="col-sm-10">
+			<p id="refer_wrap" class="form-control-static address_list">
+				{$flow_type.refer_name}
+			</p>
+		</div>
+	</div>
+	</div>
+	
+	<eq name="flow_type.id" value="62">
+	<div class="baoxiao ">
+		
+		 <div class="clearfix"></div>
+		<div class="blocktitle title-primary  flow_field_426">
+		  <div style="background:">已核准的出差申请单</div>
+		</div>
+		<div class="alert alert-info">
+		
+			<div class="form-group col-sm-6">
+	
+					<label class="col-sm-4 control-label" for="field_出差类别">出差类别</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php 
+							// 2|出差,3|外勤 
+							if(get_flow_field($from,474,550) ==2){
+								echo "出差";
+							}else{
+								echo "外勤";
+							}
+							 ?>
+								</p>
+							</div>
+				</div>	<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label" for="field_交通工具">交通工具</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php 
+							// 2|火车,3|高铁,4|动车,5|汽车,6|飞机,7|轮船
+						
+							switch (get_flow_field($from,475,551)) {
+							   case "2":
+							     echo "火车";
+							     break;
+							   case "3":
+							     echo "高铁";
+							     break;
+							   case "4":
+							     echo "动车";
+							     break;
+							   case "5":
+							     echo "汽车";
+							     break;
+							   case "6":
+							     echo "飞机";
+							     break;
+							   case "7":
+							     echo "轮船";
+							     break;
+							   default:
+							     echo "未填写";
+							}
+						
+							 ?>
+								</p>
+							</div>
+				</div>	<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label" for="field_出发地">出发地</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php echo get_flow_field($from,478,554);?>
+								</p>
+							</div>
+				</div>	<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label" for="field_目的地">目的地</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php echo get_flow_field($from,479,555);?>
+								</p>
+							</div>
+				</div>	<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label" for="field_出发时间">出发时间</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php echo get_flow_field($from,476,552);?>
+								</p>
+							</div>
+				</div>	<div class="form-group col-sm-6">
+					<label class="col-sm-4 control-label" for="field_至">至</label>
+				<div class="col-sm-8">
+					<p class="form-control-static address_list">
+						<?php echo get_flow_field($from,477,553);?>
+							</p>
+						</div>
+				</div>	<div class="form-group clearfix">
+					<label class="col-sm-2 control-label" for="field_事由说明">事由说明</label>
+					<div class="col-sm-8">
+						<p class="form-control-static address_list">
+							<?php echo get_flow_field($from,480,556);?>
+								</p>
+							</div>
+				</div>
+			
+		</div><!-- .alert alert-info -->
+	</div>
+		
+		</div><!-- .baoxiao -->
+	</eq>
+
+		
+	<volist name="field_list" id="vo"> {:W('FlowField',$vo)} </volist>
+
+<br style="clear:both;">
+
+<div class="" role="alert">
+<div class="blocktitle title-primary" >
+  <div>上传附件</div>
+</div>
+	<div class="form-group">
+		<label class="col-sm-2 control-label" >附件：</label>
+		<div class="col-sm-10">
+			{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'add'))}
+		</div>
+	</div>
+	<br style="clear:both;">
+</div>
+    
+</form>
+<br/><br/>
+<div class="alert alert-danger text-center  hidden-print" role="alert">
+			<a onclick="save(10);"  class="btn btn-lg btn-default"><i class="fa fa-save"></i> 保存</a>
+		<a onclick="save(20);"  class="btn btn-lg btn-success"><i class="fa fa-arrow-circle-up"></i> 提交</a>
+</div>
+<style type="text/css" media="screen">
+.sdkc{display:none;}
+</style>

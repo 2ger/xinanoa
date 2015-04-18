@@ -1,0 +1,1 @@
+<?php if (!defined('THINK_PATH')) exit();?><input class="form-control flow_field_<?php echo ($id); ?>" type="text" name="flow_field_<?php echo ($id); ?>" id="flow_field_<?php echo ($id); ?>" value="<?php echo ($val); ?>" <?php if(!empty($validate)): ?>check="<?php echo ($validate); ?>" msg="<?php echo ($msg); ?>"<?php endif; ?>>

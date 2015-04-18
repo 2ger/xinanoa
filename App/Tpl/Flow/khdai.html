@@ -1,0 +1,56 @@
+<layout name='Layout/ace_layout' />
+
+{:W('PageHeader',array('name'=>'受理客户申请'))}
+
+<div class="ul_table">
+	<ul>
+		<li class="thead" style="padding-left:10px">
+			<div class="pull-left">
+				<span class="col-16 ">提交时间  {$create_date} </span>
+				<span class="col-16 ">客户</span>				
+			</div>
+			<div class="pull-right">		
+				<span  class="col-10  "> 申请贷款（元） </span>
+				<span  class="col-10  ">联系电话</span>		
+				<span class="col-10  ">操作</span>
+			</div>
+			<div class="autocut auto">
+				借款用途
+			</div>
+		</li>
+	</ul>
+	<empty name="list">
+		<ul>
+			<li class="no-data">
+				没找到数据
+			</li>
+		</ul>
+		<else/>
+		<form method="post" action="" name="form_data" id="form_data">
+			<ul>
+				<foreach name="list" item="vo">
+					<li class="tbody">
+						<div class="pull-left">
+							<span class="col-16 "> {$vo.create_time|toDate='Y-m-d h:i'}</span>
+							<span class="col-16  "> {$vo.id|get_customer_name_46} </span>
+						</div>
+						<div class="pull-right">
+							<span class="col-10   ">{$vo.id|get_customer_money_46}</span>
+							<span class="col-10   ">{$vo.id|get_customer_tel_46}</span>
+							<span class="col-10   "> <a href="{:U('flow/adddai')}&flowid={$vo.id}" class="btn btn-success btn-xs">受理</a>
+						 <a href="{:U('flow/del')}&flowid={$vo.id}" class="btn btn-danger btn-xs">删除</a>
+							</span>
+						</div>
+						<div class="autocut auto">
+						{$vo.id|get_customer_for_46} 
+								
+						</div>
+					</li>
+				</foreach>
+			</ul>
+		</form>
+		<div class="pagination">
+			{$page}
+		</div>
+	</empty>
+</div>

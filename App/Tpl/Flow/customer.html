@@ -1,0 +1,52 @@
+<layout name='Layout/ace_layout' />
+{:W('PageHeader',array('name'=>$folder_name))}
+
+<div class="ul_table">
+	<ul>
+		<li class="thead" style="padding-left:10px">
+			<div class="pull-left">
+				<span class="col-12 ">客户 {$notice}</span>
+				<span class="col-12 ">贷款金额(元)</span>				
+			</div>
+			<div class="pull-right">
+				<span  class="col-12  ">类型</span>				
+				<span  class="col-12  "> 抵压物</span>
+				<span class="col-12  ">归档时间</span>
+			</div>
+			<div class="autocut auto">
+				行业
+			</div>
+		</li>
+	</ul>
+	<empty name="list">
+		<ul>
+			<li class="no-data">
+				没找到数据
+			</li>
+		</ul>
+		<else/>
+		<form method="post" action="" name="form_data" id="form_data">
+			<ul>
+				<foreach name="list" item="vo">
+					<li class="tbody">
+						<div class="pull-left">
+							<span class="col-12 "><a href="index.php?m=flow&a=read&customer=1&id={$vo.flow_id}">{$vo.flow_id|get_cus_name}</a></span>
+							<span class="col-12"> {$vo.flow_id|get_cus_money}</span>
+						</div>
+						<div class="pull-right">
+							<span class="col-12   "> {$vo.flow_id|get_cus_type}</span>
+							<span class="col-12   ">{$vo.flow_id|get_cus_dy}</span>
+							<span class="col-12   ">{$vo.flow_id|get_cus_date|toDate='Y-m-d'}</span>
+						</div>
+						<div class="autocut auto">
+						    {$vo.flow_id|get_cus_hy}
+						</div>
+					</li>
+				</foreach>
+			</ul>
+		</form>
+		<div class="pagination">
+			{$page}
+		</div>
+	</empty>
+</div>
