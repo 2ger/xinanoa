@@ -374,8 +374,8 @@
 				<i class="fa fa-double-angle-up fa-only bigger-110"></i>
 			</a>
 		</div><!-- /.main-container -->
-	<div id="push_msg"></div>
-	<iframe src="<?php echo U('push/client2');?>" class="push" id="push"></iframe>
+	<!-- <div id="push_msg"></div>
+	<iframe src="<?php echo U('push/client2');?>" class="push" id="push"></iframe> -->
 	<!-- basic scripts -->
 
 	<!--[if !IE]>

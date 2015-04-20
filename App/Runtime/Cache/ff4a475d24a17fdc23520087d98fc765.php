@@ -259,7 +259,7 @@
 		<label class="col-sm-4 control-label" >填写人：</label>
 		<div class="col-sm-8">
 			<p class="form-control-static">
-				<?php echo ($vo["user_name"]); ?>
+				<?php echo ($vo["user_name"]); ?>  <?php echo ($from_info); ?> 
 			</p>
 		</div>
 	</div>

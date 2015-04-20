@@ -293,7 +293,6 @@
 	    </button>
 
 		<div class="flowto">
-			<strong> 流程走向图: </strong>
 	<span data="dgp_13_5" id="dgp_13_5"><nobr><b>发起流程</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>
 		<?php echo ($flow_type["confirm_name"]); ?>
 		<?php if(($flow_type["refer_name"]) != ""): ?><span data="dgp_13_5" id="dgp_13_5"><b><i class="fa fa-arrow-right"></i></b><nobr><b>抄送</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>
@@ -313,7 +312,7 @@
 		</div>
     
 <div class="blocktitle title-primary" >
-  <div>个人信息 </div>
+  <div>个人信息  </div>
 </div>
 <style type="text/css" media="screen">
 .bianma{width:80px;}
@@ -324,8 +323,8 @@
 		<label class="col-sm-4 control-label" for="">填写</label>
 		<div class="col-sm-8">
 			<p id="" class="form-control-static address_list">
-	 <span class="bianma" id="emp_no"><?php echo ($UserInfo['emp_no']); ?></span>
-			 －  <span  id="username"> <?php echo get_user_name();?> </span>	</p>
+<!--	 <span class="bianma" id="emp_no"><?php echo ($UserInfo['emp_no']); ?></span> -->
+			   <span  id="username"> <?php echo get_user_name();?> </span>	 <?php echo ($from_info); ?></p>
 					</div>
 	</div>
 	<div class="form-group  col-sm-6">
@@ -393,7 +392,7 @@
 		<label class="col-sm-2 control-label" >审批：</label>
 		<div class="col-sm-10">
 			<p id="confirm_wrap" class="form-control-static address_list">
-				<?php echo ($flow_type["confirm_name"]); ?>
+				<?php echo ($from_confirm); ?> <?php echo ($flow_type["confirm_name"]); ?>
 			</p>
 		</div>
 	</div>
@@ -417,70 +416,7 @@
 	</div>
 	</div>
 	
-	<?php if(($flow_type["id"]) == "62"): ?><div class="baoxiao ">
-		
-		 <div class="clearfix"></div>
-		<div class="blocktitle title-primary  flow_field_426">
-		  <div style="background:">已核准的出差申请单</div>
-		</div>
-		<div class="alert alert-info">
-		
-			<div class="form-group col-sm-6">
-	
-					<label class="col-sm-4 control-label" for="field_出差类别">出差类别</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php  if(get_flow_field($from,474,550) ==2){ echo "出差"; }else{ echo "外勤"; } ?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_交通工具">交通工具</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php  switch (get_flow_field($from,475,551)) { case "2": echo "火车"; break; case "3": echo "高铁"; break; case "4": echo "动车"; break; case "5": echo "汽车"; break; case "6": echo "飞机"; break; case "7": echo "轮船"; break; default: echo "未填写"; } ?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_出发地">出发地</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,478,554);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_目的地">目的地</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,479,555);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_出发时间">出发时间</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,476,552);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_至">至</label>
-				<div class="col-sm-8">
-					<p class="form-control-static address_list">
-						<?php echo get_flow_field($from,477,553);?>
-							</p>
-						</div>
-				</div>	<div class="form-group clearfix">
-					<label class="col-sm-2 control-label" for="field_事由说明">事由说明</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,480,556);?>
-								</p>
-							</div>
-				</div>
-			
-		</div><!-- .alert alert-info -->
-	</div>
-		
-		</div><!-- .baoxiao --><?php endif; ?>
+	<?php if(($flow_type["id"]) == "62"): endif; ?>
 
 		
 	<?php if(is_array($field_list)): $i = 0; $__LIST__ = $field_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i; echo W('FlowField',$vo); endforeach; endif; else: echo "" ;endif; ?>

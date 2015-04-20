@@ -250,15 +250,12 @@
 				<div class="list-group">
 					<div class="widget-main clearfix"> -->
 					<div class="list-group">
-						<?php if(is_array($list)): foreach($list as $key=>$vo): if(($var) == $vo["tag"]): if(($vo["id"]) == "62"): ?><!-- 请选择已核准的出差申请单 -->
-									<a class="list-group-item type<?php echo ($vo['id']); ?>" data-toggle="modal" data-target="#myModal"><?php echo ($vo["name"]); ?></a>
-									<?php else: ?>
-									<a class="list-group-item type<?php echo ($vo['id']); ?>" href="<?php echo U('add','type='.$vo['id']);?>"><?php echo ($vo["name"]); ?></a><?php endif; ?>
-									
-									<?php if(($vo["id"]) == "69"): ?><!-- 出差申请单a  选代理人 -->
-										<a class="list-group-item type<?php echo ($vo['id']); ?>" data-toggle="modal" data-target="#myModal"><?php echo ($vo["name"]); ?>a</a>
-										<?php else: ?>
-										<a class="list-group-item type<?php echo ($vo['id']); ?>" href="<?php echo U('add','type='.$vo['id']);?>"><?php echo ($vo["name"]); ?></a><?php endif; endif; endforeach; endif; ?>
+						<?php if(is_array($list)): foreach($list as $key=>$vo): if(($var) == $vo["tag"]): switch($vo["id"]): case "62": ?><!-- 请选择已核准的出差申请单 -->	
+											<a class="list-group-item type<?php echo ($vo['id']); ?>" data-toggle="modal" data-target="#myModal"><?php echo ($vo["name"]); ?></a><?php break;?>
+									    <?php case "68": case "36": ?><!-- 出差申请单  选代理人 -->
+											<a class="list-group-item type<?php echo ($vo['id']); ?>" data-toggle="modal" data-target="#myModal2"><?php echo ($vo["name"]); ?></a><?php break;?>
+									    <?php default: ?>
+											<a class="list-group-item type<?php echo ($vo['id']); ?>" href="<?php echo U('add','type='.$vo['id']);?>"><?php echo ($vo["name"]); ?></a><?php endswitch; endif; endforeach; endif; ?>
 					<!-- </div> -->
 				</div>
 			</div>
@@ -283,6 +280,27 @@
       </div>
       <div class="modal-footer">
         如无出差申请单记录则不能发起差旅费报销申请单；无外勤记录也不得发起差旅费报销申请单。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal2 -->
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">请选择代理人</h4>
+      </div>
+      <div class="modal-body">
+		  <div class="list-group">
+		<?php if(is_array($dailiren)): foreach($dailiren as $key=>$vo): ?><a class="list-group-item list-group-item-success type68 " href="index.php?m=flow&a=add&type=68&from=<?php echo ($vo['id']); ?>"><span class="label label-primary"><?php echo ($vo["emp_no"]); ?></span>  <?php echo ($vo["name"]); ?> </a>
+					<a class="list-group-item list-group-item-success type36" href="index.php?m=flow&a=add&type=36&from=<?php echo ($vo['id']); ?>"><span class="label label-primary"><?php echo ($vo["emp_no"]); ?></span>  <?php echo ($vo["name"]); ?> </a><?php endforeach; endif; ?>
+      </div>
+      </div>
+      <div class="modal-footer">
+        注：出差后代理人将全权负责出差人的所有工作。
       </div>
     </div>
   </div>
