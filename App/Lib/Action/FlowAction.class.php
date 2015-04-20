@@ -385,9 +385,6 @@ class FlowAction extends CommonAction {
 
 	function add() {
 		
-
-		
-		
 		$widget['date'] = true;
 		$widget['uploader'] = true;
 		$widget['editor'] = true;
@@ -423,13 +420,22 @@ class FlowAction extends CommonAction {
 		$this->from = $from;
 		if ($from !='') {
 		
-		
 		if ($type_id ==36 or $type_id == 68) {
 			$this->from_name = M("user") -> where("id=$from") -> getField('name');
 			$emp_no = M("user") -> where("id=$from") -> getField('emp_no');
 			$this->from_info ="－ 代理人:".$this->from_name;
 			$this->from_confirm ='<span data="emp_'.$emp_no.'" id="emp_'.$emp_no.'"><nobr><b title="'.$this->from_name.'">'.$this->from_name.'</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>';
+			
+		}else if($type_id ==62){
+			
+			$model = D("Flow");
+			$vo = $model -> where("id=".$from) -> find();
+			$map['dai'] = $vo[dai];
+			$map['type'] = 70; 
+			$this -> addlist = M("Flow") ->where($map)->select(); 
+			$this->from = $vo[dai];
 		}
+		
 		}
 		
 		$this -> display();
@@ -963,7 +969,7 @@ $Form    =    M("flow");
         
 		if ($list !== false) {//保存成功
             // 有数据，则说明是贷款流程中的表，新增后不跳转
-            if ($dai !='') {
+            if ($dai !='' and $dai < 1429522671) {
                 $this -> success('成功!',"index.php?m=flow&a=editdai&id=$dai&type=$type&step=$step");
             }else if($kh ==1 and $type == 45) { //客户填 ，提示成功
     		    $this -> assign('jumpUrl', get_return_url());
@@ -1016,9 +1022,21 @@ $Form    =    M("flow");
 		$this -> assign("user_name", $vo['user_name']);
 
 		if ($vo['from'] !='') {
-			if ($flow_type_id ==36 or $flow_type_id == 68) {
+			if ($flow_type_id ==36 or $flow_type_id == 68) { //出差申请单
 				$from_name = M("user") -> where("id=".$vo['from']) -> getField('name');
 				$this->from_info ="－ 代理人:".$from_name;
+				
+				// 新增列表 －－－－－－－－－－－－－－－－－－
+				$map['dai'] = $vo[dai];
+				$map['type'] = 70; 
+				$this -> addlist = M("Flow") ->where($map)->select(); 
+			}
+			if ($flow_type_id ==62) { //财务报销单
+				
+				// 新增列表 －－－－－－－－－－－－－－－－－－
+				$map['dai'] = $vo['from'];
+				$map['type'] = 70; 
+				$this -> addlist = M("Flow") ->where($map)->select(); 
 			}
 		}
 		

@@ -144,110 +144,50 @@
 			</div>
 	</neq>
 	
-	
-	<eq name="vo.type" value="62">
+
 		
-		<div class="baoxiao ">
-		
-			 <div class="clearfix"></div>
-			<div class="blocktitle title-primary  flow_field_426">
+		<in name="vo.type" value="62">
+			<div class="blocktitle title-primary">
 			  <div style="background:">已核准的出差申请单</div>
 			</div>
-			<div class="alert alert-info">
-		
-				<div class="form-group col-sm-6">
+			<!-- 出差申请单 read -->
+		<table class="table table-striped table-bordered table-condensed dwylist">
+		    <tr>
+		        <th>出差类别</th>
+				<th>交通工具</th>
+		        <th>出差时间</th>
+		        <th>出发地</th>
+				<th>目的地</th>
+				<th>事由说明</th>
+		    </tr>
+		<volist name="addlist" id="vo">
+		{$vo.content}
+		 </volist>
+			</table>
+		 </in>
+		 
 	
-						<label class="col-sm-4 control-label" for="field_出差类别">出差类别</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php 
-								// 2|出差,3|外勤 
-								if(get_flow_field($from,474,550) ==2){
-									echo "出差";
-								}else{
-									echo "外勤";
-								}
-								 ?>
-									</p>
-								</div>
-					</div>	<div class="form-group col-sm-6">
-						<label class="col-sm-4 control-label" for="field_交通工具">交通工具</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php 
-								// 2|火车,3|高铁,4|动车,5|汽车,6|飞机,7|轮船
-						
-								switch (get_flow_field($from,475,551)) {
-								   case "2":
-								     echo "火车";
-								     break;
-								   case "3":
-								     echo "高铁";
-								     break;
-								   case "4":
-								     echo "动车";
-								     break;
-								   case "5":
-								     echo "汽车";
-								     break;
-								   case "6":
-								     echo "飞机";
-								     break;
-								   case "7":
-								     echo "轮船";
-								     break;
-								   default:
-								     echo "未填写";
-								}
-						
-								 ?>
-									</p>
-								</div>
-					</div>	<div class="form-group col-sm-6">
-						<label class="col-sm-4 control-label" for="field_出发地">出发地</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php echo get_flow_field($from,478,554);?>
-									</p>
-								</div>
-					</div>	<div class="form-group col-sm-6">
-						<label class="col-sm-4 control-label" for="field_目的地">目的地</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php echo get_flow_field($from,479,555);?>
-									</p>
-								</div>
-					</div>	<div class="form-group col-sm-6">
-						<label class="col-sm-4 control-label" for="field_出发时间">出发时间</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php echo get_flow_field($from,476,552);?>
-									</p>
-								</div>
-					</div>	<div class="form-group col-sm-6">
-						<label class="col-sm-4 control-label" for="field_至">至</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,477,553);?>
-								</p>
-							</div>
-					</div>	<div class="form-group clearfix">
-						<label class="col-sm-2 control-label" for="field_事由说明">事由说明</label>
-						<div class="col-sm-8">
-							<p class="form-control-static address_list">
-								<?php echo get_flow_field($from,480,556);?>
-									</p>
-								</div>
-					</div>
-			
-			</div><!-- .alert alert-info -->
-		</div><!-- .baoxiao -->
-		
-	</eq>
-	
+	<in name="vo.type" value="68,36">
+		<!-- 出差申请单 read -->
+	<table class="table table-striped table-bordered table-condensed dwylist">
+	    <tr>
+	        <th>出差类别</th>
+			<th>交通工具</th>
+	        <th>出差时间</th>
+	        <th>出发地</th>
+			<th>目的地</th>
+			<th>事由说明</th>
+	    </tr>
+	<volist name="addlist" id="vo">
+	{$vo.content}
+	 </volist>
+		</table>
+	 </in>
+	 
 	<volist name="field_list" id="field_vo">
 		{:W('FlowField',$field_vo)}
 	</volist>
+
 	
 	<neq name="is_edit" value="2">
 		<div class="form-group"  style="display:none">

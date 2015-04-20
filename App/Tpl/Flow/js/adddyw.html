@@ -55,12 +55,18 @@
 			 $("body",parent.document).find('.dwylist').append(content+'<hr>');
 		}
 		
+	 	if (typeid == '70') { 
+			var content = '<tr><td>'+$("#flow_field_571").find("option:selected").text()+' </td><td>'+$("#flow_field_572").find("option:selected").text()+'</td><td>'+$("#flow_field_573").val()+' ~ '+$("#flow_field_574").val()+'</td><td>'+$("#flow_field_575").val()+' </td><td> '+$("#flow_field_576").val()+'</td><td>'+$("#flow_field_577").val()+'</td></tr>';
+			$("#content").val(content);
+			 $("body",parent.document).find('.dwylist').append(content);
+		}
+		
 		 $("body",parent.document).find('.dyw').addClass('hidden');
 		 
 		//添加抵压物－－－－－－－－－－－－－－－－－－－－－
 		
 		if (check_form("form_data")) {
-			 // sendForm("form_data", "{:U('save')}");
+			   sendForm("form_data", "{:U('save')}");
 		}
 	}
 
