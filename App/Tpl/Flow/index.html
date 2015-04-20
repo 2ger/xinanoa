@@ -57,7 +57,7 @@
 											<!-- 请选择已核准的出差申请单 -->	
 											<a class="list-group-item type{$vo['id']}" data-toggle="modal" data-target="#myModal">{$vo.name}</a> 
 										</case>
-									    <case value="69|36">
+									    <case value="68|36">
 									    	<!-- 出差申请单  选代理人 -->
 											<a class="list-group-item type{$vo['id']}" data-toggle="modal" data-target="#myModal2">{$vo.name}</a> 
 									    </case>
@@ -102,7 +102,7 @@
 </div>
 
 <!-- Modal2 -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -111,13 +111,10 @@
       </div>
       <div class="modal-body">
 		  <div class="list-group">
-		<foreach name="chucai" item="vo">
-				<eq name="vo.step" value="40">
-					<!-- 请选择已核准的出差申请单 -->
-					<a class="list-group-item list-group-item-success type{$vo['id']}" href="index.php?m=flow&a=add&type=62&from={$vo['id']}"><span class="label label-success">已通过</span> {$vo.create_time|date="Y-m-d",###} 出差申请单   点击发起报销申请单</a>
-					<else/>
-					<a class="list-group-item type{$vo['id']} list-group-item-danger" href="{:U('read','type='.$vo['id'])}" ><span class="label label-danger">未通过</span> {$vo.create_time|date="Y-m-d",###} 出差申请单   点击追踪流程</a>
-					</eq>
+		<foreach name="dailiren" item="vo">
+					<a class="list-group-item list-group-item-success type68 " href="index.php?m=flow&a=add&type=68&from={$vo['id']}"><span class="label label-primary">{$vo.emp_no}</span>  {$vo.name} </a>
+					<a class="list-group-item list-group-item-success type36" href="index.php?m=flow&a=add&type=36&from={$vo['id']}"><span class="label label-primary">{$vo.emp_no}</span>  {$vo.name} </a>
+				
 		</foreach>
       </div>
       </div>

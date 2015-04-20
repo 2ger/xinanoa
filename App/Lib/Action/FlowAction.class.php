@@ -31,6 +31,10 @@ class FlowAction extends CommonAction {
 	  
 	  // 已核准的出差申请单
 	  $this->chucai =  M("Flow")->where("(type=36 and user_id='$user_id') or (type=68 and user_id='$user_id')" ) -> select();//68
+	  
+	  
+	  // 代理人
+	  $this->dailiren =  M("User")->where("is_del =0" ) -> select();
 		
 
 		$duty_list = D("Role") -> get_duty_list($role_list);
@@ -382,7 +386,7 @@ class FlowAction extends CommonAction {
 	function add() {
 		
 
-		$this->from = $_REQUEST['from'];
+		
 		
 		$widget['date'] = true;
 		$widget['uploader'] = true;
@@ -414,6 +418,20 @@ class FlowAction extends CommonAction {
         
 		$this->NowTime  = mktime();
 		
+		$this->from = $_REQUEST['from'];
+		$from = $_REQUEST['from'];
+		$this->from = $from;
+		if ($from !='') {
+		
+		
+		if ($type_id ==36 or $type_id == 68) {
+			$this->from_name = M("user") -> where("id=$from") -> getField('name');
+			$emp_no = M("user") -> where("id=$from") -> getField('emp_no');
+			$this->from_info ="－ 代理人:".$this->from_name;
+			$this->from_confirm ='<span data="emp_'.$emp_no.'" id="emp_'.$emp_no.'"><nobr><b title="'.$this->from_name.'">'.$this->from_name.'</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>';
+		}
+		}
+		
 		$this -> display();
 	}
 	function add1() {// 申请表单  站外引用
@@ -433,6 +451,8 @@ class FlowAction extends CommonAction {
 		$this -> assign("field_list", $field_list);
 		
 		$this -> showsend = 1; // 邮箱按钮
+		
+		
 		
 		$user_id = get_user_id();
 	//	position_id
@@ -995,6 +1015,15 @@ $Form    =    M("flow");
 		$this -> assign("emp_no", $vo['emp_no']);
 		$this -> assign("user_name", $vo['user_name']);
 
+		if ($vo['from'] !='') {
+			if ($flow_type_id ==36 or $flow_type_id == 68) {
+				$from_name = M("user") -> where("id=".$vo['from']) -> getField('name');
+				$this->from_info ="－ 代理人:".$from_name;
+			}
+		}
+		
+		
+		
 		$model_flow_field = D("FlowField");
 		$field_list = $model_flow_field -> get_data_list($id);
 		$this -> assign("field_list", $field_list);

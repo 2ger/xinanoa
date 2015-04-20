@@ -92,7 +92,6 @@
 	    </button>
 
 		<div class="flowto">
-			<strong> 流程走向图: </strong>
 	<span data="dgp_13_5" id="dgp_13_5"><nobr><b>发起流程</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>
 		{$flow_type.confirm_name}
 		<neq name="flow_type.refer_name" value="">
@@ -114,7 +113,7 @@
 		</div>
     
 <div class="blocktitle title-primary" >
-  <div>个人信息 </div>
+  <div>个人信息  </div>
 </div>
 <style type="text/css" media="screen">
 .bianma{width:80px;}
@@ -125,8 +124,8 @@
 		<label class="col-sm-4 control-label" for="">填写</label>
 		<div class="col-sm-8">
 			<p id="" class="form-control-static address_list">
-	 <span class="bianma" id="emp_no">{$UserInfo['emp_no']}</span>
-			 －  <span  id="username"> {:get_user_name()} </span>	</p>
+<!--	 <span class="bianma" id="emp_no">{$UserInfo['emp_no']}</span> -->
+			   <span  id="username"> {:get_user_name()} </span>	 {$from_info}</p>
 					</div>
 	</div>
 	<div class="form-group  col-sm-6">
@@ -194,7 +193,7 @@
 		<label class="col-sm-2 control-label" >审批：</label>
 		<div class="col-sm-10">
 			<p id="confirm_wrap" class="form-control-static address_list">
-				{$flow_type.confirm_name}
+				{$from_confirm} {$flow_type.confirm_name}
 			</p>
 		</div>
 	</div>
@@ -219,103 +218,7 @@
 	</div>
 	
 	<eq name="flow_type.id" value="62">
-	<div class="baoxiao ">
-		
-		 <div class="clearfix"></div>
-		<div class="blocktitle title-primary  flow_field_426">
-		  <div style="background:">已核准的出差申请单</div>
-		</div>
-		<div class="alert alert-info">
-		
-			<div class="form-group col-sm-6">
-	
-					<label class="col-sm-4 control-label" for="field_出差类别">出差类别</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php 
-							// 2|出差,3|外勤 
-							if(get_flow_field($from,474,550) ==2){
-								echo "出差";
-							}else{
-								echo "外勤";
-							}
-							 ?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_交通工具">交通工具</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php 
-							// 2|火车,3|高铁,4|动车,5|汽车,6|飞机,7|轮船
-						
-							switch (get_flow_field($from,475,551)) {
-							   case "2":
-							     echo "火车";
-							     break;
-							   case "3":
-							     echo "高铁";
-							     break;
-							   case "4":
-							     echo "动车";
-							     break;
-							   case "5":
-							     echo "汽车";
-							     break;
-							   case "6":
-							     echo "飞机";
-							     break;
-							   case "7":
-							     echo "轮船";
-							     break;
-							   default:
-							     echo "未填写";
-							}
-						
-							 ?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_出发地">出发地</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,478,554);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_目的地">目的地</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,479,555);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_出发时间">出发时间</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,476,552);?>
-								</p>
-							</div>
-				</div>	<div class="form-group col-sm-6">
-					<label class="col-sm-4 control-label" for="field_至">至</label>
-				<div class="col-sm-8">
-					<p class="form-control-static address_list">
-						<?php echo get_flow_field($from,477,553);?>
-							</p>
-						</div>
-				</div>	<div class="form-group clearfix">
-					<label class="col-sm-2 control-label" for="field_事由说明">事由说明</label>
-					<div class="col-sm-8">
-						<p class="form-control-static address_list">
-							<?php echo get_flow_field($from,480,556);?>
-								</p>
-							</div>
-				</div>
-			
-		</div><!-- .alert alert-info -->
-	</div>
-		
-		</div><!-- .baoxiao -->
+
 	</eq>
 
 		
