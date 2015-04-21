@@ -1,0 +1,54 @@
+	<layout name='Layout/ace_layout' />	
+
+			
+				<ul data-role="listview" data-inset="true" data-divider-theme="b" >
+					<li data-role="list-divider">公司公告<span class="ui-li-count ui-body-inherit">3</span>
+				</li>
+					<volist name="new_notice_list" id="vo" key="id">
+						<li> <a rel="external" href="{:U('notice/read','id='.$vo['id'])}"  >{$vo.name}
+						<p class="ui-li-aside"><strong>{$vo.create_time|toDate='m-d'}</strong></p>
+						</a></li>
+					</volist>
+				</ul>
+				
+		
+				<ul data-role="listview"  data-inset="true"   data-divider-theme="b">
+					<li data-role="list-divider">工作审批 <!-- <span class="ui-li-count">2</span> --></li>
+			
+					<volist name="todo_flow_list" id="vo" key="id">
+				
+						<li><a rel="external" href="{:U('flow/read','id='.$vo['id'].'&fid=confirm')}" >
+						<h2>{$vo.type|type_name}</h2>
+						<p>发起人：{$vo.user_name} / 历时：{$vo.create_time|get_days} </p>
+						<p class="ui-li-aside"><strong>{$vo.create_time|toDate='m-d'}</strong></p>
+						</a></li>
+						</volist>
+				</ul>
+				<ul data-role="listview" data-inset="true" data-divider-theme="b" >
+					<li data-role="list-divider">贷款审批 <!-- <span class="ui-li-count">2</span> --></li>
+					<volist name="todo_dai_list" id="vo" key="id">
+						<li><a rel="external" href="{:U('flow/dai','id='.$vo['id'].'&fid=confirm')}" >
+						<h2>{$vo.customer} － {$vo.money}元</h2>
+						<p>步骤：{$vo.nowstep|dai_step} / 历时：{$vo.create_time|get_days} </p>
+						</a></li>
+						</volist>
+						
+				</ul>
+				
+
+				<!-- <ul data-role="listview" data-inset="true"> -->
+					<ul data-role="listview"  data-inset="true" data-divider-theme="b" >
+					<li data-role="list-divider">还款提醒 <!-- <span class="ui-li-count">2</span> --></li>
+			
+					<volist name="notice_list" id="vo" key="id">
+						<li><a rel="external" href="smsto:{$vo.id|get_flow_field=###,363,384}:尊敬的{$vo.id|get_flow_field=###,358,377}您好!%0A 您本期需还款金额为{$vo.id|get_pay_li} 元 %0A还款期限为：{$now|toDate='Y-m'}-{$vo.create_time|toDate='d'|default='2'} %0A柳州市西南小额贷款有限公司%0A咨询0772-95545844" >
+						<h2>{$vo.id|get_flow_field=###,358,377} － {$vo.id|get_pay_li}元</h2>
+						<p>贷款总额：{$vo.id|get_flow_field=###,366,388} / 本期期限：{$now|toDate='Y-m'}-{$vo.create_time|toDate='d'|default='2'} </p>
+					
+						</a></li>
+						</volist>
+						
+				</ul>
+				
+	
+

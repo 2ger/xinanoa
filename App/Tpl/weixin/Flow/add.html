@@ -1,0 +1,69 @@
+<layout name='Layout/ace_layout' />
+
+<style type="text/css" media="screen">
+.sdkc{}
+</style>
+<form method='post' id="form_data" name="form_data" enctype="multipart/form-data" class=" form-horizontal" style="clear:both"> 
+	<input type="hidden" id="ajax" name="ajax" value="1">
+	<input type="hidden" id="kh" name="kh" value="2">
+	<input type="hidden" id="add_file" name="add_file" >
+	<input type="hidden" id="type" name="type" value="{$flow_type.id}">
+	<input type="hidden" id="opmode" name="opmode" value="add">
+	<input type="hidden" id="confirm" name="confirm" value="">
+	<input type="hidden" id="confirm_name" name="confirm_name" value="">
+	<input type="hidden" id="consult" name="consult" value="">
+	<input type="hidden" id="consult_name" name="consult_name" value="">
+	<input type="hidden" id="refer" name="refer" value="">
+	<input type="hidden" id="refer_name" name="refer_name" value="">
+	<input type="hidden" id="step" name="step" value="">
+
+	<div style="display:none">
+			<input class="form-control" type="text" id="name" name="name" check="require" msg="请输入标题" value=" {$NowTime|date='Y-m-d H:i:s',###}">
+	</div>
+
+<ul data-role="listview"  data-inset="true">
+	<li data-role="list-divider" data-theme="b"> {$flow_type['name']}</li>
+   <neq name="flow_type.confirm_name" value="">   <li>审批: <b id="confirm_wrap">{$flow_type.confirm_name} </b></li></neq>
+   <neq name="flow_type.consult_name" value=""> <li>协商: <b id="consult_wrap">{$flow_type.consult_name} </b></li></neq>
+    <neq name="flow_type.refer_name" value=""> <li>抄送: <b id="refer_wrap">{$flow_type.refer_name} 	</b> </li></neq>
+</ul>
+
+<ul data-role="listview"  data-inset="true">
+	<li data-role="list-divider"> 个人信息</li>
+    <li>发起:  {$UserInfo['emp_no']} － {:get_user_name()} </li>
+    <li>部门:   {:get_dept_name()}  </li>
+    <li>公司:  {$CompanyName['name']}  	 </li>
+	<li>日期: {$NowTime|date="Y-m-d H:i:s",###}   </li>
+</ul>
+
+<div class="ui-corner-all">
+  <div class="ui-bar ui-bar-c">
+    <h3>{$flow_type['name']} 表单信息</h3>
+  </div>
+  <div class="ui-body ui-body-b ">
+
+	<neq name="flow_type.is_edit" value="2">
+				{$flow_type.content}
+	</neq>	
+    
+
+<style type="text/css" media="screen">
+.bianma{width:80px;}
+</style>
+
+    
+
+	
+	<volist name="field_list" id="vo"> {:W('FlowField',$vo)} </volist>
+{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'add'))}
+
+  </div>
+</div>
+</form>
+
+<fieldset class="ui-grid-a">
+<div class="ui-block-a"> <a onclick="save(10);"  class="ui-btn"><i class="fa fa-save"></i> 保存</a></div>
+<div class="ui-block-b"><a onclick="save(20);"  class="ui-btn  ui-btn-c "><i class="fa fa-arrow-circle-up"></i> 提交</a></div>
+</fieldset>
+		
+		

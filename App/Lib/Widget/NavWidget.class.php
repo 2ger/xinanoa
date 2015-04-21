@@ -68,6 +68,13 @@ class NavWidget extends Widget {
                         $html .="<a  node=\"$id\" href=\"" . "$url\">\r\n";
                         $html .= "<i class=\"$icon\"></i>";
                         $html .= "<span class=\"menu-text\">$title</span>";
+	if($id == 185){
+$flow=M('FlowLog');
+$user_id = get_emp_no();
+$count=$flow->where("emp_no like '%$user_id%' and step=100")->count();
+
+							$html.="<span class=\"badge badge-danger \">$count</span>";
+						}
                         if(!empty($bc_count)){
                             $html.="<span class=\"badge badge-danger \">$bc_count</span>";
                         }

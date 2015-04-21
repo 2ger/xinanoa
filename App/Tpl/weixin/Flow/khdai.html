@@ -1,0 +1,25 @@
+<layout name='Layout/ace_layout' />
+				<!-- <ul data-role="listview" data-inset="true"> -->
+					<ul data-role="listview"  data-inset="true">
+					<li data-role="list-divider">受理客户申请 － 点击进行受理<!-- <span class="ui-li-count">2</span> --></li>
+			
+			<empty name="list">
+					<li class="no-data">
+						没找到数据
+					</li>
+				<else/>
+			
+						<foreach name="list" item="vo">
+		<li><a rel="external" href="{:U('flow/adddai')}&flowid={$vo.id}">
+		<h2>{$vo.id|get_cus_type}：{$vo.id|get_customer_name_46} － {$vo.id|get_customer_money_46}元</h2>
+		<p>贷款用途：{$vo.id|get_customer_for_46}  / 电话：{$vo.id|get_customer_tel_46} / 申请时间：{$vo.create_time|toDate='Y-m-d h:i'} </p>
+	
+		</a></li>
+						</foreach>
+			
+			</empty>	
+				</ul>
+
+		<div class="pagination">
+			{$page}
+		</div>

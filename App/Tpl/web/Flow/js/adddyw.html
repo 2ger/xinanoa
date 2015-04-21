@@ -1,0 +1,78 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+        // 选择两个元素之间的同胞元素
+        // $(".flow_field_143").nextUntil(".flow_field_149").css({"display":"none","border":"2px solid red"});
+	}); 
+
+	function save(step){
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+
+		$("#confirm_name").val($("#confirm_wrap").html());
+
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		
+		//添加抵压物－－－－－－－－－－－－－－－－－－－－－
+		var typeid = '{$flow_type.id}';
+	 	if (typeid == '52') { 
+			var content = '<b>土地抵押：</b> <br/> 地址： '+$("#flow_field_318").val()+' <br/>土地性质：'+$("#flow_field_319").val()+' <br/>地块面积： '+$("#flow_field_320").val()+'平方米 <br/>出让金额：'+$("#flow_field_321").val()+'元 <br/>抵押物： '+$("#flow_field_322").val()+' <br/>所在银行：'+$("#flow_field_323").val()+' <br/>抵押金额：'+$("#flow_field_324").val()+'元';
+			$("#content").val(content);
+			 $("body",parent.document).find('.dwylist').append(content+'<hr>');
+		}
+	 	if (typeid == '53') { 
+			var content = '<b>汽车抵押：</b> <br/> 汽车品牌： '+$("#flow_field_325").val()+' <br/>型号：'+$("#flow_field_326").val()+' <br/>排量： '+$("#flow_field_327").val()+'L <br/>车龄：'+$("#flow_field_328").val()+'年 <br/>借款金额： '+$("#flow_field_330").val()+'元 <br/>期限：'+$("#flow_field_331").val();
+			$("#content").val(content);
+			 $("body",parent.document).find('.dwylist').append(content+'<hr>');
+		}
+	 	if (typeid == '54') { 
+			var content = '<b>房产抵押：</b> <br/> 抵押房子地址： '+$("#flow_field_332").val()+' <br/>楼龄：'+$("#flow_field_333").val()+'年 <br/>是否有共有人： '+$("#flow_field_334").val()+'L <br/>面积：'+$("#flow_field_335").val()+'平方米 <br/>楼层： '+$("#flow_field_336").val()+' <br/>借款金额： '+$("#flow_field_338").val()+'元 <br/>期限：'+$("#flow_field_339").val();
+			$("#content").val(content);
+			 $("body",parent.document).find('.dwylist').append(content+'<hr>');
+		}
+		
+	 	if (typeid == '70') { 
+			var content = '<tr><td>'+$("#flow_field_572").find("option:selected").text()+' </td><td>'+$("#flow_field_573").find("option:selected").text()+'</td><td>'+$("#flow_field_574").val()+' ~ '+$("#flow_field_575").val()+'</td><td>'+$("#flow_field_576").val()+' </td><td> '+$("#flow_field_577").val()+'</td><td>'+$("#flow_field_578").val()+'</td></tr>';
+			$("#content").val(content);
+			 $("body",parent.document).find('.dwylist').append(content);
+		}
+		
+		 $("body",parent.document).find('.dyw').addClass('hidden');
+		 
+		//添加抵压物－－－－－－－－－－－－－－－－－－－－－
+		
+		if (check_form("form_data")) {
+			 sendForm("form_data", "{:U('save')}");
+		}
+	}
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+</script>

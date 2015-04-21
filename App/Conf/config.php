@@ -18,6 +18,11 @@
         'DB_LIKE_FIELDS'            =>'content|remark',
 		'SAVE_PATH'=>"Data/Files/",
         'SHOW_PAGE_TRACE'=>0, //显示调试信息
+		
+        
+		'DEFAULT_THEME'   => 'web',
+		'THEME_LIST'        => 'web,weixin',
+		'TMPL_DETECT_THEME' => true,
     );
     return $array;
 ?>

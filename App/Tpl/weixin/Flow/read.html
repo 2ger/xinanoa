@@ -1,0 +1,138 @@
+<layout name='Layout/ace_layout' />
+
+
+
+<div id="ui-body-test" class="ui-body ui-corner-all ui-body-c" style="margin-bottom:1em;">
+	<h2>{$flow_type['name']}</h2>
+<form method='post' id="form_data" name="form_data" enctype="multipart/form-data"  class="well form-horizontal">
+	<input type="hidden" id="ajax" name="ajax" value="0">
+	<input type="hidden" id="opmode" name="opmode" value="edit">
+	<input type="hidden" id="name" name="name" value="{$vo.name}">
+	<input type="hidden" id="id" name="id" value="{$vo.id}">
+	
+	<eq name="c" value="1">
+		
+		<div class="text-center">
+		<a href="index.php?m=flow&a=dai&id={$vo.dai}" target="_blank"  class="btn btn-success btn-lg">查看贷款流程</a>
+		<a href="index.php?m=flow&a=timeline&id={$vo.dai}" target="_blank"  class="btn btn-primary btn-lg pul">查看时间轴</a>
+			
+		</div><!-- .text-center -->
+		
+	<style type="text/css" media="screen">
+	.submitform,#pickfiles{display:none;}
+	.form-group select, .form-group textarea, .form-group input[type="text"], .form-group input[type="password"], .form-group input[type="datetime"], .form-group input[type="datetime-local"], .form-group input[type="date"], .form-group input[type="month"], .form-group input[type="time"], .form-group input[type="week"], .form-group input[type="number"], .form-group input[type="email"], .form-group input[type="url"], .form-group input[type="search"], .form-group input[type="tel"], .form-group input[type="color"]{border:none !important;background: transparent;border-bottom:1px solid #ccc !important;}
+	</style>	
+	
+	</eq>
+	<neq name="c" value="1">
+		
+		
+	<!-- 
+				文件编号： {$vo.doc_no}
+		 -->
+		日期：	{$vo.create_time|toDate='Y-m-d'}	<br />
+		发起：{$vo.user_name} <br />
+		部门：{$vo.dept_name}<br />
+		
+	    <neq name="vo.confirm_name" value="">  审批：	{$vo.confirm_name}<br /></neq>
+	    <neq name="vo.consult_name" value=""> 协商：	{$vo.consult_name}<br /></neq>
+	     <neq name="vo.refer_name" value=""> 抄送：		{$vo.refer_name}<br /></neq>
+		 
+		
+		
+		
+	</neq>
+	
+	<volist name="field_list" id="field_vo">
+		{:W('FlowField',$field_vo)}
+	</volist>
+	
+	<neq name="is_edit" value="2">
+	{$vo.content}
+	</neq>
+	<notempty name="vo.add_file">
+	
+				附件：
+				<eq name="is_edit" value="1">
+					{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'show'))}
+				</eq>
+				<eq name="is_edit" value="1">
+					{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'edit'))}
+				</eq>
+	</notempty>
+	
+</form>
+	
+<neq name="c" value="1">
+	<hr />
+	<style type="text/css" media="screen">
+	th{text-align: left;}
+	</style>
+	<table style="width:100%">
+	    <tr>
+	        <th>类型</th>
+	        <th>审批人</th>
+	        <th>日期</th>
+	        <th>结果</th>
+	        <th>意见</th>
+	    </tr>
+		<volist name="flow_log" id="item">
+
+	    <tr>
+	        <td>{$item.step|show_step_type}  </td>
+	        <td>{$item.user_name}  </td>
+	        <td>{$item.create_time|toDate='Y-m-d'}  </td>
+	        <td>{$item.result|show_result}  </td>
+	        <td>{$item.comment}  </td>
+	    </tr>
+		</volist>
+	</table>
+	
+		</div>
+		
+
+
+
+<notempty name="to_confirm">
+	<div id="ui-body-test" class="ui-body ui-corner-all ui-body-b" style="margin-bottom:1em;">
+	<form method="post" action="" name="form_confirm" id="form_confirm">
+	<input type="hidden" id="ajax" name="ajax" value="1">
+		<input type="hidden" name="id" value="{$to_confirm.id}">
+		<input type="hidden" name="flow_id" value="{$vo.id}">
+		<input type="hidden" name="step" value="{$to_confirm.step}">
+		<div class="operate panel panel-default">
+			<div class="form-group panel-body">
+				<label class="col-sm-2 control-label" >办理意见：</label>
+				<div class="col-sm-10">
+					<textarea name="comment" class="col-xs-12" style="height:120px"></textarea>
+				</div>
+				<notempty name="is_edit">
+					<div class="btn-group">
+						<a class="btn btn-sm btn-warning dropdown-toggle" data-toggle="dropdown" href="#">退回到<span class="fa fa-caret-down"></span> </a>
+						<ul class="dropdown-menu col-5">
+							<volist name="confirmed" id="vo">
+								<li onclick="back_to('{$vo.emp_no}');">
+									<a>{$vo.user_name}</a>
+								</li>
+							</volist>
+							<li onclick="back_to('{$emp_no}');">
+								<a>{$user_name}</a>
+							</li>
+						</ul>
+					</div>
+				</notempty>
+				<fieldset class="ui-grid-a">
+				<div class="ui-block-a"><a onclick="reject();"  class="ui-btn ui-corner-all ui-shadow ">否决</a></div>
+				<div class="ui-block-b"><a onclick="approve();"  class="ui-btn ui-corner-all ui-shadow ui-btn-c ">同意</a></div>
+				</fieldset>
+				
+				
+			</div>
+		</div>
+
+			</form>	
+			</div>
+			
+	
+</notempty>
+</neq>

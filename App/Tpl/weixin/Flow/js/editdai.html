@@ -1,0 +1,71 @@
+<script type="text/javascript">
+
+	function save(step) {
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+		$("#confirm_name").val($("#confirm_wrap").html());
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		if (check_form("form_data")) {
+			sendForm("form_data", "{:U('save')}");
+		    alert('成功');
+		}
+	}
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+	$(document).ready(function() {
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+	}); 
+
+
+</script>
+	<script language="javascript">
+
+	var nowstep = "{$step}";
+	var neststep = "{$nextstep}";               
+	var isnextdone ="{$nextis}";
+	$('.tijiao').click(function(event) {
+		  $("body",parent.document).find("#li{$step} a").addClass('ui-btn-c').removeClass('ui-btn-e');//当前步变绿
+			 // $("body",parent.document).find("[step='{$step}'] a").attr('data-theme','c');
+
+	     // alert('成功');
+    	 parent.history.back();  // ok  关闭弹窗
+		// 如果下一步为0，变红/2
+		if (isnextdone == "0") {
+			$("body",parent.document).find("#li{$nextstep} a").addClass('ui-btn-e');//当前步变绿
+			
+		}
+   
+	});
+
+	//权限操作  表单不可填，提交不可见
+	// $('input,select,button,textarea').attr("disabled","disabled").addClass('disabled');
+
+	</script>

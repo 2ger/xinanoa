@@ -1,0 +1,27 @@
+<layout name='Layout/ace_layout' />
+			<!-- <ul data-role="listview" data-inset="true"> -->
+					<ul data-role="listview"  data-inset="true">
+					<li data-role="list-divider">{$folder_name} <!-- <span class="ui-li-count">2</span> --></li>
+			<empty name="list">
+					<li class="no-data">
+						没找到数据
+					</li>
+				<else/>
+			
+						<foreach name="list" item="vo">
+		<li><a rel="external" href="index.php?m=flow&a=read&customer=1&id={$vo.flow_id}">
+		<h2>{$vo.flow_id|get_cus_name} － {$vo.flow_id|get_cus_money}元 - {$vo.flow_id|get_cus_type}</h2>
+		<p>行业：{$vo.flow_id|get_cus_hy} / 抵压物：{$vo.flow_id|get_cus_dy} / 归档时间：{$vo.flow_id|get_cus_date|toDate='Y-m-d'} </p>
+	
+		</a></li>
+						</foreach>
+			
+			</empty>
+			
+						
+				</ul>
+				
+
+		<div class="pagination">
+			{$page}
+		</div>

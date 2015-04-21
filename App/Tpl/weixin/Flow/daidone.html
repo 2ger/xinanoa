@@ -1,0 +1,24 @@
+<layout name='Layout/ace_layout' />
+				<!-- <ul data-role="listview" data-inset="true"> -->
+					<ul data-role="listview"  data-inset="true">
+					<li data-role="list-divider">贷款流程 － 已批准贷款<!-- <span class="ui-li-count">2</span> --></li>
+			
+			<empty name="list">
+					<li class="no-data">
+						没找到数据
+					</li>
+				<else/>
+			
+						<foreach name="list" item="vo">
+		<li><a rel="external" href="{:U('flow/dai')}&id={$vo.id}">
+		<h2>{$vo.customer}  － {$vo.money}元</h2>
+		<p>受理人：{$vo.user_name}  / 累计用时：{$vo.create_time|get_days}/ 资金用途：{$vo.what_for}</p>
+	
+		</a></li>
+						</foreach>
+			</empty>	
+				</ul>
+		<div class="pagination">
+			{$page}
+		</div>
+

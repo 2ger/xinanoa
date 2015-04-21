@@ -1,0 +1,38 @@
+<layout name='Layout/ace_layout' />
+				<!-- <ul data-role="listview" data-inset="true"> -->
+					<ul data-role="listview"  data-inset="true">
+					<li data-role="list-divider">工作审批 － {$folder_name}<!-- <span class="ui-li-count">2</span> --></li>
+			
+			<empty name="list">
+					<li class="no-data">
+						没找到数据
+					</li>
+				<else/>
+			
+					<foreach name="list" item="vo" key="id">
+						
+						<li><a rel="external" href="{:U('flow/read')}&id={$vo.id}">
+						<h2><!-- {$id+1}： --> {$vo.user_name} － {$vo.type_name}</h2>
+						<p>  发起时间：{$vo.create_time|toDate='y/m/d h:i'}  / 审批人：{$vo.confirm_name}</p>
+						<span class="ui-li-count">{$vo.step|show_step}</span></a>
+	</a>
+	<in name="folder" value="darft">
+		<a href="{:U('edit','id='.$vo['id'].'&fid='.$folder)}">{$vo.type_name}</a>
+		<else/>
+		<a href="{:U('read','id='.$vo['id'].'&fid='.$folder)}">{$vo.type_name}</a>
+	</in>
+	
+						</li>
+						
+					</foreach>
+			
+			<div class="pagination">
+				{$page}
+			</div>
+			
+			</empty>	
+				</ul>
+
+<style type="text/css" media="screen">
+#page_search{text-align: center;}
+</style>

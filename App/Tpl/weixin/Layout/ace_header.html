@@ -1,0 +1,126 @@
+<nav class="navbar navbar-inverse  navbar-fixed-top" role="navigation" style="background-color: #222;">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="index.php">{:get_system_config("SYSTEM_NAME")}</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                  
+                  <!-- <li  class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-group"></i> 贷款审批 <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                         <!-- <li><a href="#" url="{:U('flow/adddai')}"  node="" onclick="click_top_menu(this)"> <i class="fa fa-pencil"></i> 添加贷款审批</a></li>
+                         <li><a href="#" url="index.php?m=flow&a=add1&type=45"  node="" onclick="click_top_menu(this)"> <i class="fa fa-pencil"></i> 客户填写贷款申请单</a></li>
+                          <li><a href="#" url="{:U('flow/khdai')}"  node="224" onclick="click_top_menu(this)"> <i class="fa fa-pencil"></i> 信贷员受理贷款</a></li>
+                      <li><a href="#" url="{:U('flow/folderdai')}" node="" onclick="click_top_menu(this)"><i class="fa fa-jpy"></i> 贷中</a></li>
+
+                     <li><a href="#" url="index.php?m=flow&a=editdai&id=6" node="" onclick="click_top_menu(this)"><i class="fa fa-jpy"></i> 查看step</a></li> 
+                      <li><a href="#" url="index.php?m=flow&a=dai&id=48" node="224" onclick="click_top_menu(this)"><i class="fa fa-jpy"></i> 查看（测试）</a></li>
+
+                    </ul>
+                  </li> -->
+
+	                  <li class="active"><a href="#" url="{:U('home/index')}"  node="224" onclick="click_top_menu(this)"> <i class="fa fa-home"></i> 概览</a></li>
+					  
+                <li><a href="#" url="{:U('flow/khdai')}"  node="224" onclick="click_top_menu(this)"> <i class="fa fa-check-square-o"></i> 贷款审批</a></li>
+                <li><a href="#" url="{:U('flow/index')}" node="87" onclick="click_top_menu(this)"> <i class="fa fa-pencil"></i> 工作流程</a></li>
+                <li class=""><a href="#" url="{:U('flow/customer')}" node="137" onclick="click_top_menu(this)"> <i class="fa fa-users"></i> 客户管理</a></li>
+                <!-- <li  class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"> <i class="fa fa-group"></i> 客户管理 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="index.php?m=customer&a=add&dai=48">添加客户</a></li>
+                    <li><a href="#" url="index.php?m=customer&amp;a=index" node="137" onclick="click_top_menu(this)">客户管理</a></li>
+                  </ul>
+                </li> -->
+              </ul> 
+              
+             
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#" url="{:U('user/index')}" node="84" onclick="click_top_menu(this)">
+						{$Think.session.user_name}													
+				</a> </li>
+                <li><a href="{:U('login/logout')}" ><i class="fa fa-sign-out bigger-100"></i>退出</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">设置 <span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="{:U('profile/index')}">修改基本资料</a></li>
+                    <li><a href="{:U('profile/password')}">修改密码</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{:U('user_config/index')}">设置通知</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav>
+        
+    
+    	<eq name="showsend" value="1">
+    <a class="btn btn-app app-nav btn-xs nav-app addtj" href="#"  onclick="save(20);">
+    	<i class="fa fa-envelope-o bc-mail bigger-100"></i>
+        提交																
+    				</a>
+    <a class="btn btn-app app-nav btn-xs nav-app addtj" href="#"  onclick="popup_confirm();">
+    	<i class="fa fa-plus-circle bc-mail bigger-100"></i>
+        添加关卡														
+    				</a>
+    	</eq>
+        
+            <!-- 发送，添加关卡，仅发起可见 -->
+                
+<nav class="navbar navbar-default " role="navigation"  style="display:none !important">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header" style="
+    width: 200px;
+">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-6">
+			<span class="sr-only">Toggle navigation</span>
+			<i class="fa fa-bars fa-lg"></i>
+      </button>
+		  <div class="hidden-xs">&nbsp;</div>
+          <a  url="/liucheng/index.php?m=flow&amp;a=index" node="87" onclick="click_top_menu(this)"  class="navbar-brand">{:get_system_config("SYSTEM_NAME")}</a>
+         	
+				<a href="#" url="{:U('user/index')}" node="84" onclick="click_top_menu(this)">
+						{$Think.session.user_name}													
+				</a>  <a href="{:U('login/logout')}" ><i class="fa fa-sign-out bigger-100"></i>退出</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        
+
+     
+                        
+        <div class="collapse navbar-collapse" id="navbar-collapse-6">
+          <ul class="nav navbar-nav navbar-right" >
+				<foreach name="top_menu" item="top_menu_vo">
+				<a class="btn btn-app app-nav btn-xs nav-app"  href="#" url="{:U($top_menu_vo['url'])}" node="{$top_menu_vo.id}" onclick="click_top_menu(this)" >
+					<i class="{$top_menu_vo.icon} bigger-100"></i>{$top_menu_vo.name}
+					<php>
+						$bc_class="";
+						$module_count=0;
+						$icon_class=$top_menu_vo['icon'];
+						if(strpos($icon_class,"bc-")!==false){
+							$bc_class=get_bc_class($icon_class);
+							$module_count=array_sum($new_count[$bc_class]);
+							if($module_count>99){
+								$module_count="99+";
+							}
+							if($module_count==0){
+								$module_count=null;
+							}
+						}</php>
+						<notempty name="module_count">
+							<span class="badge badge-pink">{$module_count}</span>
+						</notempty>					
+				</a>&nbsp;&nbsp;
+				</foreach><a class="btn btn-app btn-xs btn-danger" style="margin-top:15px;margin-bottom:20px;margin-left:7px;margin-right:10px;" href="{:U('login/logout')}" ><i class="fa fa-sign-out bigger-100"></i>退出</a>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </nav>

@@ -21,7 +21,7 @@ class FlowLogModel extends CommonModel {
 		$user_name=M("User")->where($where)->getField("name");
 		$data["user_id"]=$user_id;
 		$data["user_name"]=$user_name;
-		$this -> _pushReturn($new, "收到新的流程",1,$user_id);
+		//$this -> _pushReturn($new, "收到新的流程",1,$user_id);
 	}
 }
 ?>

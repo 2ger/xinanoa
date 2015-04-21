@@ -1,0 +1,41 @@
+
+	<layout name='Layout/ace_layout' />	
+
+			
+			
+			<div class="ui-corner-all custom-corners">
+				<div class="ui-bar ui-bar-a">
+				<h3>{$vo['name']}</h3>
+				</div>
+				<div class="ui-body ui-body-a">
+				<p>
+					发布日期：	{$vo.create_time|toDate='Y年m月d日 H:i'}  / 发布人：{$vo.user_name}
+
+						
+<hr />
+						
+									{$vo.content}
+						
+						<hr />
+						<div class="form-group">
+							<label class="col-sm-2 control-label" for="name">附件：</label>
+							<div class="col-sm-10">
+								{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'show'))}
+							</div>
+						</div>
+						
+						
+					    <!--增加签收-->
+					   
+						<ul data-role="listview" data-inset="true" data-counttheme="a">
+									<li data-role="list-divider" data-theme="b">已签收人员</li>
+									<volist name="signlist" id="vosign">
+									<li>{$vosign.user_name} {$vosign.sign_time|toDate='Y-m-d H:i'}</li>
+									</volist>            
+								</ul>
+						
+						<!--增加签收--></p>
+				</div>
+			</div>
+			
+		

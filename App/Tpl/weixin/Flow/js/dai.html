@@ -1,0 +1,110 @@
+<script type="text/javascript">
+
+	function save(step) {
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+		$("#confirm_name").val($("#confirm_wrap").html());
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		if (check_form("form_data")) {
+			sendForm("form_data", "{:U('save')}");
+		}
+	}
+
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+	$(document).ready(function() {
+        
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+        
+        
+	}); 
+    
+  
+</script>
+  <script type="text/javascript">
+	var thishref = window.location.href;
+	var thishash = window.location.hash;
+	var thisurl=thishref.replace(thishash,"");
+	
+	function stepdone2(form_data) { //完成
+     sendForm(form_data,"", "__SELF__");
+      // parent.history.back();  // 返回
+	    // window.reload();  //刷新页面
+		 // location.reload();
+		 location.href=thisurl;
+	};
+    
+  	function stepdone(form_data) { //审批
+        var badstep =$("#"+form_data+" #bad_step").val();
+        if(badstep !==""){
+            $("#"+form_data+" #step").val(badstep);
+        }
+         // alert($("#step").val());
+       sendForm(form_data,"", "__SELF__");
+     //  parent.history.back();  // 返回
+	    // window.reload();  //刷新页面
+		 // location.reload();
+		  location.href=thisurl;
+  	};
+	
+    //不同意 1) step 变为 select的step 2）done改为2
+  	function notdone(form_data) { 
+        var badstep =$("#"+form_data+" #bad_step").val();
+         $("#"+form_data+" #step").val(badstep);
+          $("#"+form_data+" #done").val("2");
+          // alert($("#step").val());
+            if (check_form(form_data)){
+               sendForm(form_data,"", "__SELF__");
+      // parent.history.back();  // 返回
+			   // window.reload();  //刷新页面
+		 location.href=thisurl;
+          }
+  	};
+	
+	
+	// 添加抵压物
+	$('.dyw-btn1').click(function() {
+		$('.dyw1').removeClass('hidden');
+		$('.dyw2,.dyw3').addClass('hidden');
+	});
+	$('.dyw-btn2').click(function() {
+		$('.dyw2').removeClass('hidden');
+		$('.dyw1,.dyw3').addClass('hidden');
+	});
+	$('.dyw-btn3').click(function() {
+		$('.dyw3').removeClass('hidden');
+		$('.dyw1,.dyw2').addClass('hidden');
+	});
+  </script>
+<style type="text/css" media="screen">
+.text-center{color: #b4c2cc;}
+.hidden{display:none;}
+</style>

@@ -1,0 +1,140 @@
+<script type="text/javascript">
+
+	function save(step) {
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+		$("#confirm_name").val($("#confirm_wrap").html());
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		if (check_form("form_data")) {
+			sendForm("form_data", "{:U('save')}");
+		}
+	}
+
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+	$(document).ready(function() {
+        
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+        
+         // 打开  －－－   显示本部份内容，隐藏其它部份内容
+        $(".liu-nav").click(function(){
+          //  alert(""+$(this).attr("panel")+"");
+             $(".panel-collapse").removeClass("in").css("height","0");
+              $(".steps").addClass("hidden").removeClass("panel-danger").addClass("panel-default");
+
+              
+               $(".showself").attr("panel",$(this).attr("panel"));
+               $(".showall").attr("panel",$(this).attr("panel"));
+               $(".openall").attr("panel",$(this).attr("panel"));
+  
+             $("."+$(this).attr("panel")).removeClass("hidden");
+            $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+          
+        })
+        
+        $(".showself").click(function(){
+          //  alert(""+$(this).attr("panel")+"");
+             $(".panel-collapse").removeClass("in").css("height","0");
+              $(".steps").addClass("hidden");
+  
+             $("."+$(this).attr("panel")).removeClass("hidden");
+            $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+        })
+    
+        $(".showall").click(function(){     //显示所有 panel
+             $(".steps").removeClass("hidden");
+             $("."+$(this).attr("panel")).removeClass("panel-default");
+             $("."+$(this).attr("panel")).addClass("panel-danger");
+              $(".panel-collapse").removeClass("in").css("height","0");
+             $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+        })
+    
+        $(".openall").click(function(){     //打开所有 panel
+             $(".steps").removeClass("hidden");
+            $(".panel-collapse").removeClass("in").css("height","0");
+            $(".panel-collapse").addClass("in").css("height","auto");
+        })
+    
+      
+        
+	}); 
+    
+  
+</script>
+  <script type="text/javascript">
+ 
+ // 直接提交
+	function stepdone2(form_data) { 
+     sendForm(form_data,"", "__SELF__");
+      $('#myModal').modal('hide');
+	};
+    
+	// 修改数据后再提交
+  	function stepdone(form_data) { 
+     	$("#"+form_data+" #setstep").val('step1038');
+		alert($("#setstep").val());
+       sendForm(form_data,"", "__SELF__");
+        $('#myModal').modal('hide');
+  	};
+	
+    //不同意 1) step 变为 select的step 2）done改为2
+  	function notdone(form_data) {
+        var badstep =$("#"+form_data+" #bad_step").val();
+		if (badstep !='') {
+			 $("#"+form_data+" #step").val(badstep);
+		}
+          $("#"+form_data+" #done").val("2");
+		  
+          // alert($("#step").val());
+            if (check_form(form_data)){
+               sendForm(form_data,"", "__SELF__");
+               $('#myModal').modal('hide');
+          }
+  	};
+	
+	
+	// 添加抵压物
+	$('.dyw-btn1').click(function() {
+		$('.dyw1').removeClass('hidden');
+		$('.dyw2,.dyw3').addClass('hidden');
+	});
+	$('.dyw-btn2').click(function() {
+		$('.dyw2').removeClass('hidden');
+		$('.dyw1,.dyw3').addClass('hidden');
+	});
+	$('.dyw-btn3').click(function() {
+		$('.dyw3').removeClass('hidden');
+		$('.dyw1,.dyw2').addClass('hidden');
+	});
+  </script>
+<style type="text/css" media="screen">
+.text-center{color: #b4c2cc;}
+</style>

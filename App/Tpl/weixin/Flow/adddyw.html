@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8" />
+	<title>{$CompanyName['name']} 添加抵压物</title>
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- basic styles -->
+	<link rel="stylesheet" href="__PUBLIC__/css/bootstrap.min.css"  />
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome.min.css" />
+
+	<!--[if IE 7]>
+	<link rel="stylesheet" href="__PUBLIC__/css/font-awesome-ie7.min.css" />
+	<![endif]-->
+
+	<!-- page specific plugin styles -->
+	<link rel="stylesheet" href="__PUBLIC__/css/jquery-ui-1.10.3.full.min.css" />
+	<include file="Widget:css"/>
+
+	<!-- fonts -->
+	<!-- ace styles -->
+
+	<link rel="stylesheet" href="__PUBLIC__/css/uncompressed/ace.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/uncompressed/ace-rtl.css" />
+	<link rel="stylesheet" href="__PUBLIC__/css/uncompressed/ace-skins.css" />
+
+	<!--[if lte IE 8]>
+	<link rel="stylesheet" href="__PUBLIC__/css/uncompressed/ace-ie.css" />
+	<![endif]-->
+
+	<!-- inline styles related to this page -->
+	<link rel="stylesheet" href="__PUBLIC__/css/style.css" />
+	<!-- ace settings handler -->
+
+	<script src="__PUBLIC__/js/ace-extra.min.js"></script>
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+	<!--[if lt IE 9]>
+	<script src="__PUBLIC__/js/html5shiv.js"></script>
+	<script src="__PUBLIC__/js/respond.min.js"></script>
+	<![endif]-->
+	<include file="Public:script" />
+</head>
+<body>
+<style type="text/css" media="screen">
+body{overflow-x:hidden;background: transparent;}
+</style>
+						<div class="row0">
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+			
+                                    <div class="col-sm-12  hidden-print hidden">
+                                        <h4><i class="fa fa-group"></i> {:get_system_config("SYSTEM_NAME")}</h4>
+  
+                                    </div>
+                                    <div class="page-header hidden">
+                                      <h1><div class=" hidden-print">
+                                          {$CompanyName['name']} 
+                                      </div> 
+                                          <div class="text-center">
+                                              {$flow_type['name']}
+                                          </div></h1>
+                                    </div>
+                                    
+                                    <div class="col-sm-12 text-center ">
+                                       {:W('PageHeader',array('name'=>array('',$flow_type['name']),'search'=>'N'))}
+                                       <!-- {:W('PageHeader',array('name'=>array('',$flow_type['short']),'search'=>'N'))} -->
+                                    </div>
+
+
+                                  <div class="pull-right text-right hidden hidden-print" style="
+                                    	    position: absolute;
+                                        top: 0px;
+                                        right: 20px;">
+                                    	<!--	<a onclick="go_return_url();" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-list"></span>返回</a> -->
+                                        <div style="margin-right:10px;margin-top:5px">
+                                             表单号：HW-{$NowTime|date='ymdHis',###}
+                                        </div>
+                                    			<eq name="flow_type.is_lock" value="0">
+                                    				<a onclick="popup_confirm();"  class="btn btn-sm btn-warning hidden-print"><i class="fa fa-cubes"></i> 选择审批流程</a>
+                                    			</eq>
+          
+                                    			<a   onclick="winprint();"  class="btn btn-sm btn-primary hidden-print"><i class="fa fa-print"></i> 打印表单</a>
+
+     
+                                        	</div>
+                                    	</div>
+
+                                    <form method='post' id="form_data" name="form_data" enctype="multipart/form-data" class=" form-horizontal" style="clear:both"> 
+                                    	<input type="hidden" id="ajax" name="ajax" value="1">
+                                    	<input type="hidden" id="add_file" name="add_file" >
+                                    	<input type="hidden" id="type" name="type" value="{$flow_type.id}">
+                                    	<input type="hidden" id="opmode" name="opmode" value="add">
+                                    	<input type="hidden" id="confirm" name="confirm" value="">
+                                    	<input type="hidden" id="confirm_name" name="confirm_name" value="">
+                                    	<input type="hidden" id="consult" name="consult" value="">
+                                    	<input type="hidden" id="consult_name" name="consult_name" value="">
+                                    	<input type="hidden" id="refer" name="refer" value="">
+                                    	<input type="hidden" id="refer_name" name="refer_name" value="">
+                                    	<input type="hidden" id="step" name="step" value="">
+                                    	<input type="hidden" id="steps" name="steps" value="{$step}">
+                                    	<input type="hidden" id="dai" name="dai" value="{$dai}">
+                                    	<input type="hidden" id="content" name="content" value="">
+
+                                    	<div class="form-group" style="display:none">
+                                    		<label class="col-sm-2 control-label" for="name"><!--标题 -->文件编号</label>
+                                    		<div class="col-sm-10">
+                                    			<input class="form-control" type="text" id="name" name="name" check="require" msg="请输入标题" value=" {$NowTime|date='Y-m-d H:i:s',###}">
+                                    		</div>
+                                    	</div>
+
+
+                                    	<neq name="flow_type.is_edit" value="2">
+                                    	<div class="alert alert-danger  hidden-print" role="alert">
+                                    				{$flow_type.content}
+                                    	</div>
+                                    	</neq>	
+    
+    
+    
+                                    <div class="blocktitle title-primary hidden-print hidden" >
+                                      <div>个人信息</div>
+                                    </div>
+                                    <style type="text/css" media="screen">
+                                    .bianma{width:80px;}
+                                    </style>
+
+                                      <div class="alert alert-success hidden-print hidden" role="alert">
+                                     	<div class="form-group  col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">申请人</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                    	 <span class="bianma" id="emp_no">{$UserInfo['emp_no']}</span>
+                                    			 －  <span  id="username"> {:get_user_name()} </span>	</p>
+                                    					</div>
+                                    	</div>
+                                    	<div class="form-group  col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">职称</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                    				  {$PositionName['name']} 		</p>
+                                    					</div>
+                                    	</div>
+    
+                                    	<div class="form-group  col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">公司</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                    				 <span class="bianma">{$CompanyName['rank_no']} </span>－  {$CompanyName['name']}		</p>
+                                    					</div>
+                                    	</div>
+	
+                                    	<div class="form-group  col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">手机</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                    				  {$UserInfo['mobile_tel']}	</p>
+                                    					</div>
+                                    	</div>
+    
+                                    	<div class="form-group  col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">部门</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                                    <span class="bianma">{$PositionName['position_no']}</span>
+                                    				 － <span id="get_dept_name"> {:get_dept_name()} 	</span>	</p>
+                                    					</div>
+                                    	</div>
+	
+	
+	
+                                    	<div class="form-group col-sm-6">
+                                    		<label class="col-sm-4 control-label" for="">申请日期</label>
+                                    		<div class="col-sm-8">
+                                    			<p id="" class="form-control-static address_list">
+                                    				 {$NowTime|date="Y-m-d H:i:s",###}  		</p>
+                                    					</div>
+                                    	</div>
+                                        <br style="clear:both;">
+                                    </div>
+
+                                    <div style="display:none">
+                                    	<div class="form-group">
+                                    		<label class="col-sm-2 control-label" >文件编号：</label>
+                                    		<div class="col-sm-10">
+                                    			<p class="form-control-static">
+                                    				{$flow_type.doc_no_format}
+                                    			</p>
+                                    		</div>
+                                    	</div>
+
+                                    	<div class="form-group">
+                                    		<label class="col-sm-2 control-label" >审批：</label>
+                                    		<div class="col-sm-10">
+                                    			<p id="confirm_wrap" class="form-control-static address_list">
+                                    				{$flow_type.confirm_name}
+                                    			</p>
+                                    		</div>
+                                    	</div>
+
+                                    	<div class="form-group">
+                                    		<label class="col-sm-2 control-label" >协商：</label>
+                                    		<div class="col-sm-10">
+                                    			<p id="consult_wrap" class=" form-control-static address_list">
+                                    				{$flow_type.consult_name}
+                                    			</p>
+                                    		</div>
+                                    	</div>
+
+                                    	<div class="form-group">
+                                    		<label class="col-sm-2 control-label" >抄送：</label>
+                                    		<div class="col-sm-10">
+                                    			<p id="refer_wrap" class="form-control-static address_list">
+                                    				{$flow_type.refer_name}
+                                    			</p>
+                                    		</div>
+                                    	</div>
+                                    	</div>
+	
+                                    	<volist name="field_list" id="vo"> {:W('FlowField',$vo)} </volist>
+
+                                    <br style="clear:both;">
+
+                                    <!-- <div class="hidden-print" role="alert">
+                                    <div class="blocktitle title-primary" >
+                                      <div>上传附件</div>
+                                    </div>
+                                    	<div class="form-group hidden-print">
+                                    		<label class="col-sm-2 control-label" >附件：</label>
+                                    		<div class="col-sm-10">
+                                    			{:W('File',array('add_file'=>$vo['add_file'],'mode'=>'add'))}
+                                    		</div>
+                                    	</div>
+                                    	<br style="clear:both;">
+                                    </div> -->
+    
+                                    </form>
+                            <hr />
+                                    <div class=" text-center  hidden-print" role="alert">
+                                    		<!-- <a onclick="save(10);"  class="btn  btn-primary"><i class="fa fa-save"></i> 保存 </a> -->
+                                    		<a onclick="save(20);"  class="btn  btn-success"><i class="fa fa-plus-square"></i>添加</a>
+                                    </div>
+                                    
+                                    
+								<!-- PAGE CONTENT ENDS -->
+							</div><!-- /.col -->
+						</div><!-- /.row -->
+				
+	<!-- basic scripts -->
+
+	<!--[if !IE]>
+	-->
+	<script type="text/javascript">
+			window.jQuery || document.write("<script src='__PUBLIC__/js/jquery-2.1.0.min.js'>" + "<" + "/script>");</script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+		window.jQuery || document.write("<script src='__PUBLIC__/js/jquery-1.11.0.min.js'>"+"<"+"/script>");</script>
+<![endif]-->
+<script type="text/javascript">
+			if ("ontouchend" in document)
+				document.write("<script src='__PUBLIC__/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/typeahead-bs2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
+<script src="__PUBLIC__/js/jquery.slimscroll.min.js"></script>
+
+<include file="Widget:plugin"/>
+
+<!-- ace scripts -->
+<script src="__PUBLIC__/js/ace-elements.min.js"></script>
+<script src="__PUBLIC__/js/uncompressed/ace.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<include file="$js_file" />
+<!-- inline scripts related to this page -->
+</body>
+</html>
+

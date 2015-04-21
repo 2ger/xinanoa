@@ -620,9 +620,17 @@ function get_customer_cteate_46($flowid) { //申请时间 46
 // 受理表单  end -------------------------------------------------
 
 function get_days($time) { // 相隔时间换成 天数
- 	$time = mktime() - $time;
-    $time = intval($time/3600/24).'天'.date('H小时i分',$time);
+ //	$time = mktime() - $time;
+   // $time = intval($time/3600/24).'天'.date('H小时i分',$time);
     // $time = intval($time/3600/24).'天'.date('H小时i分s秒',$time);
+	$timed = mktime() - $time-3600*24;
+$sj=floor($timed/3600/24);
+	if($sj<0)
+	{
+$sj=0;
+}
+ 	$timeh = mktime() - $time-3600*8;
+    $time = floor($sj).'天'.date('H小时i分',$timeh);
 	return $time;
 }
 

@@ -1,0 +1,105 @@
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#confirm span").on("dblclick", function() {
+			$("#confirm span").last().find("b").remove();
+		});
+		$("#consult span").on("dblclick", function() {
+			$("#consult span").last().find("b").remove();
+		});
+        
+         // 打开  －－－   显示本部份内容，隐藏其它部份内容
+        $(".liu-nav").click(function(){
+          //  alert(""+$(this).attr("panel")+"");
+             $(".panel-collapse").removeClass("in").css("height","0");
+              $(".steps").addClass("hidden").removeClass("panel-danger").addClass("panel-default");
+
+              
+               $(".showself").attr("panel",$(this).attr("panel"));
+               $(".showall").attr("panel",$(this).attr("panel"));
+               $(".openall").attr("panel",$(this).attr("panel"));
+  
+             $("."+$(this).attr("panel")).removeClass("hidden");
+            $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+        })
+        
+        $(".showself").click(function(){
+          //  alert(""+$(this).attr("panel")+"");
+             $(".panel-collapse").removeClass("in").css("height","0");
+              $(".steps").addClass("hidden");
+  
+             $("."+$(this).attr("panel")).removeClass("hidden");
+            $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+        })
+    
+        $(".showall").click(function(){     //显示所有 panel
+             $(".steps").removeClass("hidden");
+             $("."+$(this).attr("panel")).removeClass("panel-default");
+             $("."+$(this).attr("panel")).addClass("panel-danger");
+            $("#"+$(this).attr("panel")).addClass("in").css("height","auto");
+        })
+    
+        $(".openall").click(function(){     //打开所有 panel
+             $(".steps").removeClass("hidden");
+            $(".panel-collapse").removeClass("in").css("height","0");
+            $(".panel-collapse").addClass("in").css("height","auto");
+        })
+    
+        // 点 完成 变绿，下一个变红
+        var steps =new Array("step21","step22","step23","step24","step3","step411","step412","step42","step43","step51","step52","step6","step7","step81","step82","step83","step84","step85","step91","step92");
+        // alert(steps[steps.indexOf(aa)+1]); //取得下一个数组
+    
+        $('.step-done').click(function() {
+            // alert($(this).attr("step")); // 取得当前步
+            var nowstep = $(this).attr("step");
+            var neststep = steps[steps.indexOf(nowstep)+1];
+            $("[panel='"+nowstep+"']").removeClass("btn-danger").addClass("btn-success");//当前步变绿
+            $("[panel='"+neststep+"']").addClass("btn-danger");//下一步变红
+            //打开下一步
+            // $(".panel-collapse").removeClass("in").css("height","0");
+     //        $("#"+neststep).addClass("in").css("height","auto");
+             // 关闭弹窗
+             $('#myModal').modal('hide');
+        });
+        
+        
+	}); 
+
+	function save(step){
+		window.onbeforeunload=null;
+		$("#confirm").val("");
+		$("#confirm_wrap  span").each(function() {
+			$("#confirm").val($("#confirm").val() + $(this).attr("data") + '|');
+		});
+
+		$("#confirm_name").val($("#confirm_wrap").html());
+
+		$("#consult").val("");
+		$("#consult_wrap  span").each(function() {
+			$("#consult").val($("#consult").val() + $(this).attr("data") + '|');
+		});
+		$("#consult_name").val($("#consult_wrap").html());
+
+		$("#refer").val("");
+		$("#refer_wrap  span").each(function() {
+			$("#refer").val($("#refer").val() + $(this).attr("data") + '|');
+		});
+		$("#refer_name").val($("#refer_wrap").html());
+
+		if ($("#confirm").val().length < 2) {
+			ui_error('请选择审批流程');
+			return false;
+		}
+		$("#step").val(step);
+		if (check_form("form_data")) {
+			sendForm("form_data", "{:U('save')}");
+		}
+	}
+
+	function popup_confirm() {
+		winopen("{:U('popup/confirm')}", 730, 574);
+	}
+
+
+       
+    
+    </script>

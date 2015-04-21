@@ -31,11 +31,9 @@ class FlowAction extends CommonAction {
 	  
 	  // 已核准的出差申请单
 	  $this->chucai =  M("Flow")->where("(type=36 and user_id='$user_id') or (type=68 and user_id='$user_id')" ) -> select();//68
-	  
-	  
-	  // 代理人
-	  $this->dailiren =  M("User")->where("is_del =0" ) -> select();
 		
+	  // 代理人
+	  	  $this->dailiren =  M("User")->where("is_del =0" ) -> select();
 
 		$duty_list = D("Role") -> get_duty_list($role_list);
 		$duty_list = rotate($duty_list);
@@ -385,6 +383,9 @@ class FlowAction extends CommonAction {
 
 	function add() {
 		
+
+		// $this->from = $_REQUEST['from'];
+		
 		$widget['date'] = true;
 		$widget['uploader'] = true;
 		$widget['editor'] = true;
@@ -416,27 +417,28 @@ class FlowAction extends CommonAction {
 		$this->NowTime  = mktime();
 		
 		$this->from = $_REQUEST['from'];
-		$from = $_REQUEST['from'];
-		$this->from = $from;
-		if ($from !='') {
+				$from = $_REQUEST['from'];
+				$this->from = $from;
+				if ($from !='') {
 		
-		if ($type_id ==36 or $type_id == 68) {
-			$this->from_name = M("user") -> where("id=$from") -> getField('name');
-			$emp_no = M("user") -> where("id=$from") -> getField('emp_no');
-			$this->from_info ="－ 代理人:".$this->from_name;
-			$this->from_confirm ='<span data="emp_'.$emp_no.'" id="emp_'.$emp_no.'"><nobr><b title="'.$this->from_name.'">'.$this->from_name.'</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>';
+					if ($type_id ==36 or $type_id == 68) {
+						$this->from_name = M("user") -> where("id=$from") -> getField('name');
+						$emp_no = M("user") -> where("id=$from") -> getField('emp_no');
+						$this->from_info ="－ 代理人:".$this->from_name;
+						$this->from_confirm ='<span data="emp_'.$emp_no.'" id="emp_'.$emp_no.'"><nobr><b title="'.$this->from_name.'">'.$this->from_name.'</b></nobr><b><i class="fa fa-arrow-right"></i></b></span>';
 			
-		}else if($type_id ==62){
+					}else if($type_id ==62){
 			
-			$model = D("Flow");
-			$vo = $model -> where("id=".$from) -> find();
-			$map['dai'] = $vo[dai];
-			$map['type'] = 70; 
-			$this -> addlist = M("Flow") ->where($map)->select(); 
-			$this->from = $vo[dai];
-		}
+						$model = D("Flow");
+						$vo = $model -> where("id=".$from) -> find();
+						$map['dai'] = $vo[dai];
+						$map['type'] = 70; 
+						$this -> addlist = M("Flow") ->where($map)->select(); 
+						$this->from = $vo[dai];
+					}
+					
+				}
 		
-		}
 		
 		$this -> display();
 	}
@@ -457,8 +459,6 @@ class FlowAction extends CommonAction {
 		$this -> assign("field_list", $field_list);
 		
 		$this -> showsend = 1; // 邮箱按钮
-		
-		
 		
 		$user_id = get_user_id();
 	//	position_id
@@ -969,7 +969,7 @@ $Form    =    M("flow");
         
 		if ($list !== false) {//保存成功
             // 有数据，则说明是贷款流程中的表，新增后不跳转
-            if ($dai !='' and $dai < 1429522671) {
+            if ($dai !=''  and $dai < 1429522671) {
                 $this -> success('成功!',"index.php?m=flow&a=editdai&id=$dai&type=$type&step=$step");
             }else if($kh ==1 and $type == 45) { //客户填 ，提示成功
     		    $this -> assign('jumpUrl', get_return_url());
@@ -1021,6 +1021,12 @@ $Form    =    M("flow");
 		$this -> assign("emp_no", $vo['emp_no']);
 		$this -> assign("user_name", $vo['user_name']);
 
+		$model_flow_field = D("FlowField");
+		$field_list = $model_flow_field -> get_data_list($id);
+		$this -> assign("field_list", $field_list);
+
+
+
 		if ($vo['from'] !='') {
 			if ($flow_type_id ==36 or $flow_type_id == 68) { //出差申请单
 				$from_name = M("user") -> where("id=".$vo['from']) -> getField('name');
@@ -1039,13 +1045,7 @@ $Form    =    M("flow");
 				$this -> addlist = M("Flow") ->where($map)->select(); 
 			}
 		}
-		
-		
-		
-		$model_flow_field = D("FlowField");
-		$field_list = $model_flow_field -> get_data_list($id);
-		$this -> assign("field_list", $field_list);
-
+			
 		$model = M("FlowType");
 		$flow_type = $model -> find($flow_type_id);
 		$this -> assign("flow_type", $flow_type);

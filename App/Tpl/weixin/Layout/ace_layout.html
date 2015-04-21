@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{:get_system_config("SYSTEM_NAME")}</title>
+
+	<link rel="stylesheet" href="__PUBLIC__/weixin/css/themes/default/theme-classic.css">
+	<link rel="stylesheet" href="__PUBLIC__/weixin/css/themes/default/jquery.mobile.structure-1.4.5.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/weixin/css/themes/default/jquery.mobile.icons-1.4.5.min.css">
+	<link rel="shortcut icon" href="__PUBLIC__/weixin/favicon.ico">
+	<script src="/liucheng/Public/js/ace-extra.min.js"></script>
+	<include file="Public:script" />
+	
+</head>
+<body>
+<div  data-role="page"   data-theme="d" class="jqm-demos" data-quicklinks="true">
+
+	<div data-role="header" data-position="fixed">
+		<h1>{:get_system_config("SYSTEM_NAME")}</h1>
+		<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-icon-back ui-btn-icon-left ui-btn-icon-notext">返回</a>
+		<a href="#nav-panel" class="ui-btn ui-corner-all ui-shadow ui-btn-icon-left ui-icon-gear ">快速通道</a>
+		<!-- <div data-role="navbar">
+			<ul>
+				<li><a href="#" class="ui-btn-active ui-state-persist">概览</a></li>
+				<li><a href="#">贷款审批</a></li>
+				<li><a href="#">工作审批</a></li>
+			</ul>
+		</div> -->
+	</div><!-- /header -->
+	
+			<div data-role="panel" data-display="push" data-theme="a" data-position="right" id="nav-panel"> 
+				<ul data-role="listview">
+		            <li data-icon="delete"><a href="#" data-rel="close">关闭</a></li>
+		                <li><a href="index.php" rel="external">概览</a></li>
+		                <li data-role="list-divider">贷款审排</li>
+		                <li><a href="index.php?m=flow&a=khdai">客户申请</a></li>
+		                <li><a href="index.php?m=flow&a=daitodo">待办事项</a></li>
+		                <li><a href="index.php?m=flow&a=mydai">我受理的</a></li>
+		                <li><a href="index.php?m=flow&a=daiing">代款中</a></li>
+		                <li><a href="index.php?m=flow&a=daidone">已批准</a></li>
+		                <li data-role="list-divider">工作审批</li>
+		                <li><a href="index.php?m=flow&a=index">发起流程</a></li>
+		                <li><a href="index.php?m=flow&a=folder&fid=submit">追踪流程</a></li>
+		                <li><a href="index.php?m=flow&a=folder&fid=confirm">待办事项</a></li>
+		                <li><a href="index.php?m=flow&a=folder&fid=darft">流程草稿</a></li>
+						<li data-role="collapsible">
+						    <h3>客户管理</h3>
+						    <ul>
+  	   						<li data-filtertext="swipe to delete list items listviews swipe events">
+  	   						<a node="143" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=1">
+								所有</a>
+  	   						</li>
+									   
+	   						<li data-filtertext="swipe to delete list items listviews swipe events">
+	   						<a node="143" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=1">
+	   						正常</a>
+	   						</li>
+	   						<li>
+	   						<a node="108" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=2">
+	   						次级</a>
+	   						</li>
+	   						<li>
+	   						<a node="124" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=3">
+	   						瑕疵</a>
+	   						</li>
+	   						<li>
+	   						<a node="107" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=4">
+	   						禁入</a>
+	   						</li>
+	   						</li>
+						
+	   						<li class="active open">
+	   						<a class="dropdown-toggle" node="85" href="#">金额</span><b class="arrow fa fa-angle-down"></b></a></li>
+	   						<li>
+	   						<a node="177" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=5">
+	   						1万〜10万</a>
+	   						</li>
+	   						<li>
+	   						<a node="102" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=6">
+	   						10万〜100万</a>
+	   						</li>
+	   						<li>
+	   						<a node="196" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=7">
+	   						100万〜1000万</a>
+	   						</li>
+	   						<li>
+	   						<a node="195" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=8">
+	   						1000万以上</a>
+	   						</li>
+	   						</li>
+	   						<li class="active open">
+	   						<a class="dropdown-toggle" node="126" href="#">行业</span><b class="arrow fa fa-angle-down"></b></a></li>
+	   						<li>
+	   						<a node="88" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=9">
+	   						房地产</a>
+	   						</li>
+	   						<li>
+	   						<a node="189" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=10">
+	   						建筑建材</a>
+	   						</li>
+	   						</li>
+	   						<li class="active open">
+	   						<a class="dropdown-toggle" node="259" href="#">抵压物</span><b class="arrow fa fa-angle-down"></b></a></li>
+	   						<li>
+	   						<a node="261" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=12">
+	   						土地</a>
+	   						</li>
+	   						<li>
+	   						<a node="262" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=14">
+	   						其它</a>
+	   						</li>
+	   						<li>
+	   						<a node="260" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=13">
+	   						房产</a>
+	   						</li>
+	   						<li>
+	   						<a node="216" href="index.php?m=flow&amp;a=index.php&amp;m=flow&amp;a=customer&amp;fid=11">
+	   						汽车</a>
+	   						</li>
+						    </ul>
+						</li>
+						
+				<a href="index.php?m=login&amp;a=logout" class="ui-btn ui-icon-delete ui-btn-icon-left ui-shadow-icon ui-btn-b"><i class="fa fa-sign-out bigger-100"></i>退出</a>
+								
+				</ul>
+						<br />
+						<script>
+								$(document).ready(function(){
+									$( "#theme-selector input" ).on( "change", function( event ) {
+										var themeClass = $( "#theme-selector input:checked" ).attr( "id" );
+										$( ".jqm-demos" ).removeClass( "ui-page-theme-a ui-page-theme-b" ).addClass( "ui-page-theme-" + themeClass );
+									});
+								})
+							</script>
+						<!-- <form class="ui-mini">
+									<div class="ui-field-contain" id="theme-selector">
+										<fieldset data-role="controlgroup" data-type="horizontal">
+											<legend>夜间:</legend>
+											<label for="a">关</label>
+											<input type="radio" name="theme" id="a" checked>
+											<label for="b">开</label>
+											<input type="radio" name="theme" id="b">
+										</fieldset>
+									</div>
+
+								</form>
+								 -->
+			</div><!-- /panel -->
+	<div class="ui-content" role="main">
+	<!-- PAGE CONTENT BEGINS -->
+		{__CONTENT__}
+	<!-- PAGE CONTENT ENDS -->										
+			</div><!-- /content -->
+
+
+		<!-- <div data-role="footer">
+			<div data-role="navbar">
+			<ul>
+			<li><a href="#" data-icon="home">概览</a></li>
+			<li><a href="#" data-icon="grid" >贷款审批</a></li>
+			<li><a href="#" data-icon="star">工作审批</a></li>
+			</ul>
+			</div>
+		</div> -->
+
+		</div><!-- /page -->
+
+
+	<script src="__PUBLIC__/weixin/js/jquery.js"></script>
+	<script src="__PUBLIC__/weixin/js/jquery.mobile-1.4.5.min.js"></script>
+		<script type="text/javascript">
+			if ("ontouchend" in document)
+				document.write("<script src='__PUBLIC__/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");</script>
+<script src="__PUBLIC__/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/typeahead-bs2.min.js"></script>
+<script src="__PUBLIC__/js/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="__PUBLIC__/js/jquery.ui.touch-punch.min.js"></script>
+<script src="__PUBLIC__/js/jquery.slimscroll.min.js"></script>
+
+<include file="Widget:plugin"/>
+
+<!-- ace scripts -->
+<script src="__PUBLIC__/js/ace-elements.min.js"></script>
+<script src="__PUBLIC__/js/uncompressed/ace.js"></script>
+<script src="__PUBLIC__/js/common.js"></script>
+<include file="$js_file" />
+<!-- inline scripts related to this page -->
+</body>
+</html>

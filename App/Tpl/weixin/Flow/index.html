@@ -1,0 +1,17 @@
+<layout name='Layout/ace_layout' />
+<foreach name="tag_list" item="tag">
+	<assign name="var" value="$key" />
+	<!-- <ul data-role="listview" data-inset="true"> -->
+		<ul data-role="listview"  data-inset="true"  class="list{$key}"> 
+		<li data-role="list-divider">{$tag} <!-- <span class="ui-li-count">2</span> --></li>
+
+			<foreach name="list" item="vo">
+				<eq name="var" value="$vo.tag">
+					<li><a rel="external" href="{:U('add','type='.$vo['id'])}">{$vo.name}</a></li>
+				</eq>
+			</foreach>
+	</ul>
+</foreach>
+<style type="text/css" media="screen">
+.list82{display:none;}
+</style>

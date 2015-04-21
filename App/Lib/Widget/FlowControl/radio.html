@@ -1,7 +1,19 @@
 <div class="form-inline flow_field_{$id}">
 	<foreach name="control_data" item="control_vo">
 		<label>
-			<input name="flow_field_{$id}" class="ace" type="radio" value="{$key}"  <in name="key" value="$val">checked</in>>
+				<?php
+$var= ACTION_NAME;
+if($var=="read")
+{
+?>
+<input name="flow_field_{$id}" class="ace" type="radio" value="{$key}"  <in name="key" value="$val">checked</in>>
+<?php
+}else
+{
+	?><input name="flow_field_{$id}[]" class="ace" type="radio" value="{$key}" <in name="key" value="1">checked</in>><?php
+}
+ ?>
+		
 			<span class="lbl">{$control_vo}</span>
 		</label>
 	</foreach>
